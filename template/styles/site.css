@@ -1,1 +1,32 @@
 /* You can add styles here */
+#app{
+    background-color: pink;
+}
+#logo{
+    height: 20%;
+    background-color: blue;
+}
+#navbar{
+    font-style: oblique;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+}
+.container{
+    width: 800px;
+    height: 500px;
+    margin: auto;
+
+}
+
+.navLinks{
+    display: flex;
+    flex-direction: row;
+    
+}
+.navItem{
+    align-self: space-between;
+    color: red;
+}
+.bubble-Bundle{
+
+}
