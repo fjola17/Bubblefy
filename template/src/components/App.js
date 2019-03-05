@@ -8,25 +8,25 @@ import Bundles from './BubbleItems/Bundles/Bundles';
 import About from './About/About';
 import Cart from './Cart/Cart';
 
-const App = () => {
-    
-    return (
-        <>
-            <Navbar />
-            <div className="container">
-                <Switch>
-                    <Route exact path="/" component={ Bubbles } />
-                    <Route path="/Bubbles" render={ () => <Redirect to="/" />}/>
-                    <Route exact path="/Bundles" component={ Bundles } />
-                    <Route exact path="/About" component={ About } />
-                    <Route exact path="/Cart" component={ Cart } />
-                    
-                </Switch>
-            </div>
-            <Container />
-        </>
-    )
-
+class App extends React.Component {
+    render(){
+        return (
+            <>
+                <Navbar />
+                <div className="container">
+                    <Switch>
+                        <Route exact path="/" component={ Bubbles } />
+                        <Route path="/Bubbles" render={ () => <Redirect to="/" />}/>
+                        <Route exact path="/Bundles" component={ Bundles } />
+                        <Route exact path="/About" component={ About } />
+                        <Route exact path="/Cart" component={ Cart } />
+                        
+                    </Switch>
+                </div>
+                <Container />
+            </>
+        )
+    }
 };
 
 export default App;

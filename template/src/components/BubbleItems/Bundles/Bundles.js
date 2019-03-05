@@ -1,8 +1,10 @@
 import React from 'react';
 
-const Bundles = () => {
-    return(
-        <p>Bundles</p>
-    )
+class Bundles extends React.Component {
+    render(){
+        return(
+            <p>Bundles</p>
+        )
+    }
 }
 export default Bundles;

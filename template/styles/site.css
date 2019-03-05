@@ -19,12 +19,13 @@
 }
 ul{
     list-style-type: none;
-    margin: 0px;
-    padding: 0px;
-    display: flex;
 
 }
 NavLink{
    flex-flow: column;
     
+}
+.ple{
+    height: 50px;
+    width: 800px;
 }
