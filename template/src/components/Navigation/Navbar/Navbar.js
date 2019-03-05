@@ -2,12 +2,12 @@ import React from 'react';
 import NavLinks from '../NavLinks/NavLinks'
 
 const Navbar = () =>{
-    return(
-        <div>
-        <nav id="navbar">
-           <NavLinks />
+    return(        
+        <nav className="navbar navbar-expand-lg">
+            <h2>Bubblefy</h2>
+            <NavLinks />
         </nav>
-        </div>
+
     )
 }
 export default Navbar;

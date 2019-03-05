@@ -17,16 +17,14 @@
     margin: auto;
 
 }
-
-.navLinks{
+ul{
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
     display: flex;
-    flex-direction: row;
-    
-}
-.navItem{
-    align-self: space-between;
-    color: red;
-}
-.bubble-Bundle{
 
+}
+NavLink{
+   flex-flow: column;
+    
 }
