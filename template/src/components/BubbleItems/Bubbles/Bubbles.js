@@ -58,7 +58,7 @@ class Bubbles extends React.Component{
     }
     render(){
         return (
-            <div>Hello there
+            <div>
                 <BubbleListView products={this.state.products}/>
             </div>
         )
