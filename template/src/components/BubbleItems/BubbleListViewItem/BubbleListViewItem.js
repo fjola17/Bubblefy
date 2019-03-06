@@ -7,7 +7,7 @@ const BubbleViewListItem = (props) =>{
         <li className="card border-dark mb-3">
             <div className="ple">
                 <img className="ple-img" src={props.product.image}/>
-                <h4 className="card-title"><Link to={ "/bubbles/" + props.product.id }>{props.product.name}</Link></h4>
+                <h4 className="card-title"><Link to={"/bubbles/" + props.product.id}>{props.product.name}</Link></h4>
                 <p className="card-text">{props.product.price}</p>
             </div>
         </li>

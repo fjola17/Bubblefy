@@ -19,7 +19,15 @@ class ProductItem extends React.Component{
     render(match){
         return (
             <div>
-                { JSON.stringify(this.state.products) }
+                <div className="d-flex">
+                    <img className="flex-column" src={this.state.products.image}/>
+                    <div className="flex-column">
+                        <div className="flex-row">{this.state.products.name} </div>
+                        <div className="flex-row">{this.state.products.price}</div>
+                        <div className="flex-row">{this.state.products.description}</div>
+                        <div className="flex-row btn btn-primary">Add to cart </div>
+                    </div>
+                </div>
             </div>
         )
     }
