@@ -1,11 +1,26 @@
 import React from 'react';
+import BubblesInCart from '../BubblesInCart/BubblesInCart';
 
 class Cart extends React.Component{
-    render(){
+    componentDidMount(){
+        /*var cartItems = getCart();
+        var total = refreshCart();
+        this.setState = {cartItems : cartItems,
+        total : total}*/
+    }
+    constructor(){
+        super();
+        this.state = {
+            cartItems: [],
+            total : 0
+        }
+    }
+    
+    render(props){  
         return(
             <div>
                 <p>Items in your cart</p>
-                <p>I don't do anything, I'm just a placeholder</p>
+                <BubblesInCart />
                 <button>Proceed order</button>
             </div>
         )
