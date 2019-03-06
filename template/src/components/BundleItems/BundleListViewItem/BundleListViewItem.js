@@ -2,14 +2,17 @@ import React from 'react'
 import propTypes from 'prop-types';
 
 const BundleListViewItem = (props) =>{
+    console.log(props.bundle);
     return(
         <li className="card border-dark mb-3">
             <div className="ple">
                 <h4 className="card-title">{props.bundle.name}</h4>
             </div>
+                { props.bundle.items.map(id => {
+                    return <p>{id}</p>
+                })}
         </li>
     )
-    
 }
 
 BundleListViewItem.propTypes = {
