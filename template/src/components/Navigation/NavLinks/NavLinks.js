@@ -3,7 +3,7 @@ import {NavLink} from 'react-router-dom';
 
 const NavLinks = () =>{
     return (
-        <ul className="navbar-nav mr-auto">
+        <ul className="navbar navbar-expand-lg">
             <li className="nav-item">
                 <NavLink to="/Bubbles" className="navLinks">Bubbles</NavLink>
             </li>

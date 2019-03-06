@@ -1,33 +1,16 @@
 import React from 'react';
 import BundleListView from '../BundleListView/BundleListView';
-
+import {apifetch} from '../../../services/ApiFetcher';
 class Bundles extends React.Component {
     componentDidMount() {
-        var products = "hfdhad"; //setja inn fall sem tengist server
-        this.setState = ({
-            bundles : this.state.bundles //breyta þegar tengt er við server
-        })
+        apifetch("bundles")
+        .then(response => response.json())
+        .then(data => this.setState({bundles : data}))
     }
     constructor(){
         super();
         this.state = {
-            bundles: [
-                {
-                    id: 1,
-                    name: "Dark Christmas!",
-                    items: [ 5, 6 ]
-                },
-                {
-                    id: 2,
-                    name: "Triple Bubble!",
-                    items: [ 2, 3, 4 ]
-                },
-                {
-                    id: 3,
-                    name: "Plain wild!",
-                    items: [ 1, 2 ]
-                }
-            ]
+            bundles: []
         }
     }
     render(){
