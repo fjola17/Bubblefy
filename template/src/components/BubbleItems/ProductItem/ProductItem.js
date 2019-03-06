@@ -7,8 +7,6 @@ class ProductItem extends React.Component{
         apifetch(`bubbles/${id}`)
         .then(request => request.json())
         .then(data => this.setState({products: data}))
-        
-        console.log(id);
     }
     constructor(){
         super();
@@ -16,8 +14,36 @@ class ProductItem extends React.Component{
             products: []
         }
     }
+
+    productGet(productName) {
+        return localStorage.getItem(productName);
+    }
+
+    productIncrement(productName) {
+        if (this.productGet(productName) === null) {
+            localStorage.setItem(productName, 0);
+        } else {
+            localStorage.setItem(productName, parseInt(this.productGet(productName)) + 1);
+        }
+    }
+
+    incrementCart(productName) {
+        this.productIncrement(productName);
+        this.forceUpdate();
+    }
+
     render(match){
-        return (
+        var cartInfo = () => {
+            if(this.productGet(this.state.products.name) === null) {
+                return <p>Nothing of this product in cart</p>
+            } else {
+                return <p>Ooh baby, so many bubbles. { this.productGet(this.state.products.name) } to be exact</p>
+            }
+       }
+
+       var resolvedInfo = cartInfo();
+
+       return (
             <div>
                 <div className="d-flex">
                     <img className="flex-column" src={this.state.products.image}/>
@@ -25,9 +51,10 @@ class ProductItem extends React.Component{
                         <div className="flex-row">{this.state.products.name} </div>
                         <div className="flex-row">{this.state.products.price}</div>
                         <div className="flex-row">{this.state.products.description}</div>
-                        <div className="flex-row btn btn-primary">Add to cart </div>
+                        <div onClick={ () => {this.incrementCart(`${this.state.products.name}`) }} className="flex-row btn btn-primary">Add to cart </div>
                     </div>
                 </div>
+                { resolvedInfo }
             </div>
         )
     }
