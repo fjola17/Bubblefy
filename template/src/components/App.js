@@ -7,6 +7,7 @@ import Bundles from './BundleItems/Bundles/Bundles';
 import About from './About/About';
 import Cart from './CartItems/Cart/Cart';
 import ProductItem from './BubbleItems/ProductItem/ProductItem';
+import Error from './Error/Error';
 
 class App extends React.Component {
     render(){
@@ -21,7 +22,7 @@ class App extends React.Component {
                         <Route exact path="/About" component={ About } />
                         <Route exact path="/Cart" component={ Cart } />
                         <Route exact path="/Bubbles/:BubbleId" component={ProductItem} />
-                        
+                        <Route path="/*" component={Error}/>
                     </Switch>
                 </div>
             </>
