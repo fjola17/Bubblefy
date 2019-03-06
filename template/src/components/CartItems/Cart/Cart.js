@@ -1,6 +1,6 @@
 import React from 'react';
 import BubblesInCart from '../BubblesInCart/BubblesInCart';
-
+import ProceedOrder from '../../Checkout/ProceedOrder/ProceedOrder'
 class Cart extends React.Component{
     componentDidMount(){
         /*var cartItems = getCart();
@@ -21,7 +21,7 @@ class Cart extends React.Component{
             <div>
                 <p>Items in your cart</p>
                 <BubblesInCart />
-                <button>Proceed order</button>
+                <ProceedOrder />
             </div>
         )
     }
