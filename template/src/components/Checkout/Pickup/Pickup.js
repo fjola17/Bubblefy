@@ -1,13 +1,13 @@
 import React from 'react';
 import StorePickup from '../StorePickup/StorePickup';
 import StoreDelivery from '../StoreDelivery/StoreDelivery';
+
 class Pickup extends React.Component{
     constructor(){
         super()
         this.state = {
             store: false,
             deliver: false
-
         }
         this.deliverHome = this.deliverHome.bind(this);
         this.deliverStore = this.deliverStore.bind(this);
@@ -24,7 +24,7 @@ class Pickup extends React.Component{
     render(){
 
         let form;
-
+        //Decide which button is pressed
         if(this.state.deliver){
             form = <StoreDelivery />
         }
