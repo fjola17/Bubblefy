@@ -4,7 +4,7 @@ import toastr from 'toastr';
 import Form from '../Form/Form'
 import Input from '../Input/Input'
 import { apiput } from '../../../services/ApiFetcher';
-import { marshallStorage } from '../../../services/Storage';
+import { marshallStorage, unmarshallStorage } from '../../../services/Storage';
 
 class StoreDelivery extends React.Component {
 
@@ -61,6 +61,7 @@ class StoreDelivery extends React.Component {
             }
 
             apiput(this.state.fields.phoneNumber, JSON.stringify(order))
+            unmarshallStorage("{}") //empties local storage of only bubble related items
 
             toastr.success("Form sucessfully submitted");
         } else {
