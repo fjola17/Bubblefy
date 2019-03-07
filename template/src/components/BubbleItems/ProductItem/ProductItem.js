@@ -21,7 +21,7 @@ class ProductItem extends React.Component{
 
     productIncrement(productName) {
         if (this.productGet(productName) === null) {
-            localStorage.setItem(productName, 0);
+            localStorage.setItem(productName, 1);
         } else {
             localStorage.setItem(productName, parseInt(this.productGet(productName)) + 1);
         }
