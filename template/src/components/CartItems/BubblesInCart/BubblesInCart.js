@@ -3,7 +3,15 @@ import PropTypes from 'prop-types';
 
 const Container = (props) =>{
     var bubbles = Object.keys(props.cartStorage);
-    console.log(props.cartStorage);
+    var price = bubbles.splice(bubbles.indexOf("bubbles::price"), 1)
+
+    var pricer = () => {
+        if(price !== undefined) {
+            return <div className="container">Price: {props.cartStorage[price]}</div>
+        }
+    }
+
+
     return(
 
         <div>
@@ -13,6 +21,7 @@ const Container = (props) =>{
                 }
             )
         }
+        { pricer() }
         </div>
     )
 }

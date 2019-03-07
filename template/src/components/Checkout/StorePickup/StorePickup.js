@@ -47,7 +47,6 @@ class StorePickup extends React.Component{
     submitForm(e){
         e.preventDefault();
         if(this.validateForm()){
-            console.log(this.state.fields);
             var order = {
                 fields: this.state.fields,
                 bubbles: JSON.parse(marshallStorage())
@@ -59,7 +58,6 @@ class StorePickup extends React.Component{
             this.setState({redirect: true})
         }
         else{
-            console.log("I failed");
             toastr.error("Error: Form didn't successfully submit", "Failure!");
         }
     }

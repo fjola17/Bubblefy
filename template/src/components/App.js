@@ -9,6 +9,7 @@ import About from './About/About';
 import Cart from './CartItems/Cart/Cart';
 import ProductItem from './BubbleItems/ProductItem/ProductItem';
 import Order from './OrderItems/Orders/Order';
+import LastOrder from './OrderItems/LastOrder/LastOrder';
 import Error from './Error/Error';
 import HomePage from './HomePage/HomePage';
 import Success from './Checkout/Success/Success';
@@ -28,7 +29,11 @@ class App extends React.Component {
                         <Route exact path="/Cart" component={ Cart } />
                         <Route exact path="/Bubbles/:BubbleId" component={ProductItem} />
                         <Route exact path="/Orders" component={ Order } />
+
                         <Route exact path="/Success" component={ Success } />
+
+                        <Route exact path="/lastOrder/:telephone" component = { LastOrder } />
+
                         <Route path="/*" component={Error}/>
                     </Switch>
                 </div>

@@ -4,11 +4,11 @@ const productGet = (productName) => {
 }
 
 //Increments a product by 'productName' in storage
-const productIncrement = (productName) => {
+const productIncrement = (productName, quanta) => {
     if (localStorage.getItem(`bubbles::${productName}`) === null) {
-        localStorage.setItem(`bubbles::${productName}`, 1);
+        localStorage.setItem(`bubbles::${productName}`, quanta);
     } else {
-        localStorage.setItem(`bubbles::${productName}`, parseInt(localStorage.getItem(`bubbles::${productName}`)) + 1);
+        localStorage.setItem(`bubbles::${productName}`, parseInt(localStorage.getItem(`bubbles::${productName}`)) + quanta);
     }
 }
 
@@ -45,8 +45,8 @@ const unmarshallStorage = (json) => {
         localStorage.removeItem(previousKeys[i])
     }
 
-    for(var i = 0; i < keys; i++) {
-        localStorage.setItem(key, storedObject[key]);
+    for(var i = 0; i < keys.length; i++) {
+        localStorage.setItem(keys[i], storedObject[keys[i]]);
     }
 }
 

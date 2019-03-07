@@ -70,7 +70,6 @@ class StoreDelivery extends React.Component {
             toastr.success("Form sucessfully submitted", "Success!");
             this.setState({redirect: true})
         } else {
-            console.log("neinei");
             toastr.error("Error: Form didn't sucessfully submit", "Failure!")
 
         }

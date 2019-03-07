@@ -20,7 +20,6 @@ class Order extends React.Component{
         apifetch(`orders/${number}`)
         .then((response) => {
             if(response.ok) {
-                console.log("Response is ok");
                 response.json().then(
                     data => {
                         this.setState({
@@ -36,7 +35,7 @@ class Order extends React.Component{
                 })
             }
             if(response.status === 404) {
-                console.log("Not found");
+                //Do nothing
             }
         })
     }

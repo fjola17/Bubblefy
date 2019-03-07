@@ -16,8 +16,10 @@ class ProductItem extends React.Component{
         }
     }
 
-    incrementCart(productName) {
-        productIncrement(productName);
+    incrementCart(productName, price) {
+        productIncrement(productName, 1);
+        productIncrement("price", parseInt(price));
+        console.log("We doing th thing?");
         this.forceUpdate();
     }
 
@@ -40,7 +42,7 @@ class ProductItem extends React.Component{
                         <div className="flex-row">{this.state.products.name} </div>
                         <div className="flex-row">{this.state.products.price}</div>
                         <div className="flex-row">{this.state.products.description}</div>
-                        <div onClick={ () => {this.incrementCart(`${this.state.products.name}`) }} className="flex-row btn btn-primary">Add to cart </div>
+                        <div onClick={ () => {this.incrementCart(`${this.state.products.name}`, this.state.products.price) }} className="flex-row btn btn-primary">Add to cart </div>
                     </div>
                 </div>
                 { resolvedInfo }

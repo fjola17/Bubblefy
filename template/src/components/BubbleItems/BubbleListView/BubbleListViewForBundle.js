@@ -3,7 +3,6 @@ import BubbleViewListItem from '../BubbleListViewItem/BubbleListViewItem';
 import PropTypes from 'prop-types';
 
 const BubbleListViewForBundle = (props) => {
-    console.log(props)
     return(
             <ul className="list-view">
                 {
