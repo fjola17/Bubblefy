@@ -1,13 +1,12 @@
 import React from 'react';
 import BubblesInCart from '../BubblesInCart/BubblesInCart';
 import ProceedOrder from '../../Checkout/ProceedOrder/ProceedOrder'
+import { marshallStorage } from '../../../services/Storage';
 class Cart extends React.Component{
     componentDidMount(){
-        /*var cartItems = getCart();
-        var total = refreshCart();
-        this.setState = {cartItems : cartItems,
-        total : total}*/
+        this.setState({cartItems: JSON.parse(marshallStorage())})
     }
+
     constructor(){
         super();
         this.state = {
@@ -17,10 +16,11 @@ class Cart extends React.Component{
     }
     
     render(props){  
+        console.log(this.state);
         return(
             <div>
                 <p>Items in your cart</p>
-                <BubblesInCart />
+                <BubblesInCart cartStorage={this.state.cartItems}/>
                 <ProceedOrder />
             </div>
         )
