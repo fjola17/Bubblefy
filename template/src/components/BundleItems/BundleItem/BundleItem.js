@@ -31,7 +31,6 @@ class BundleItem extends React.Component {
     }
 
     render() {
-        console.log(this.state);
         return(
             <li className="card border-dark mb-3">
                     <h4 className="card-title">{this.state.bundle.name}</h4>

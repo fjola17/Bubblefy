@@ -12,15 +12,13 @@ const OrderListViewItem = (props) =>{
     return(
         <li className="mb-3 d-flex">            
             { lastOrder() }
-            <br />
             { 
                 Object.keys(props.bubbles).map(
                     bubble => {
-                        return <div>{bubble.substring("bubbles::".length, bubble.length)}: {props.bubbles[bubble]}<br /></div>
+                        return <p>|{bubble.substring("bubbles::".length, bubble.length)}: {props.bubbles[bubble]}</p>
                     }
                 )
             }
-            <hr />
         </li>
     )
 }

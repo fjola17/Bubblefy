@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 const Container = (props) =>{
     var bubbles = Object.keys(props.cartStorage);
-    console.log(props.cartStorage);
     return(
 
         <div>
