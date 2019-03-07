@@ -4,6 +4,18 @@ const apifetch = (url) => {
     return fetch(api + url)
 }
 
+const apiput = (telephone, data) => {
+    return fetch(`${api}/orders/${telephone}`, 
+    {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: data
+    })
+}
+
 export {
-    apifetch
+    apifetch,
+    apiput
 };
