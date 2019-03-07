@@ -5,7 +5,7 @@ const NavLinks = () =>{
     return (
         <ul className="navbar navbar-expand-lg">
             <li className="nav-item">
-                <NavLink to="/Bubbles" className="navLinks">Bubbles</NavLink>
+                <NavLink to="/Bubbles" className="navLinks">Products</NavLink>
             </li>
             <li className="nav-item">
             <NavLink to="/Bundles" className="navLinks">Bundles</NavLink>

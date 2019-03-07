@@ -1,7 +1,6 @@
 import React from 'react';
 import BubbleListView from '../BubbleListView/BubbleListView'
 import {apifetch} from '../../../services/ApiFetcher'
-//import { getBubbleItems } from "../../../context/BubbleContext/BubbleContext";
 
 class Bubbles extends React.Component{
     componentDidMount() {

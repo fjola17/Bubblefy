@@ -9,6 +9,7 @@ import About from './About/About';
 import Cart from './CartItems/Cart/Cart';
 import ProductItem from './BubbleItems/ProductItem/ProductItem';
 import Error from './Error/Error';
+import HomePage from './HomePage/HomePage';
 
 class App extends React.Component {
     render(){
@@ -17,8 +18,8 @@ class App extends React.Component {
                 <Navbar />
                 <div className="container">
                     <Switch>
-                        <Route exact path="/" component={ Bubbles } />
-                        <Route exact path="/Bubbles" render={ () => <Redirect to="/" />}/>
+                        <Route exact path="/" component={ HomePage } />
+                        <Route exact path="/Bubbles" component={ Bubbles }/>
                         <Route exact path="/Bundles" component={ Bundles } />
                         <Route exact path="/Bundles/:BundleId" component={ BundleItem } />
                         <Route exact path="/About" component={ About } />
