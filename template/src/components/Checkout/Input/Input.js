@@ -1,5 +1,5 @@
 import React from 'react';
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 const Input = props => {
     const { value, onInput, type, errorMessage, label, name, htmlId} = props;
@@ -26,13 +26,13 @@ const Input = props => {
 
 Input.propTypes = {
   /* The value provided to the input HTML tag */
-  value: propTypes.string.isRequired,
-  htmlId: propTypes.string.isRequired,
-  name: propTypes.string.isRequired,
-  onInput: propTypes.func.isRequired,
-  type: propTypes.oneOf([ 'text', 'number', 'submit' ]),
-  errorMessage: propTypes.string,
-  label: propTypes.string
+  value: PropTypes.string.isRequired,
+  htmlId: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  onInput: PropTypes.func.isRequired,
+  type: PropTypes.oneOf([ 'text', 'number', 'submit' ]),
+  errorMessage: PropTypes.string,
+  label: PropTypes.string
 };
 
 export default Input;

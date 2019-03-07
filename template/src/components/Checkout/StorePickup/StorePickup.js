@@ -8,8 +8,8 @@ import { apiput } from '../../../services/ApiFetcher';
 import { marshallStorage, unmarshallStorage } from '../../../services/Storage';
 
 class StorePickup extends React.Component{
-    constructor(props){
-        super(props);
+    constructor(){
+        super();
         this.state = {
             fields:{
                 fullName : '',

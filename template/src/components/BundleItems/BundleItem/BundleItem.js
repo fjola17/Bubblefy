@@ -1,6 +1,7 @@
 /* Bundle item rechieved */
 import React from 'react'
 import BubbleListViewForBundle from '../../BubbleItems/BubbleListView/BubbleListViewForBundle'
+import PropTypes from 'prop-types';
 import { apifetch } from '../../../services/ApiFetcher';
 
 class BundleItem extends React.Component {
@@ -24,7 +25,7 @@ class BundleItem extends React.Component {
 
     constructor() {
         super();
-        this.state = { 
+        this.state = {
             bundle: {},
             items: []
         }
@@ -40,12 +41,6 @@ class BundleItem extends React.Component {
         )
     }
 }
-/*
-BundleListViewItem.propTypes = {
-    bundle : propTypes.shape({
-        id: propTypes.number.isRequired,
-        name: propTypes.string.isRequired,
-        items: propTypes.array.isRequired
-    }).isRequired
-}*/
+
+
 export default BundleItem;

@@ -43,6 +43,10 @@ ul{
     font-size: 26px;
     margin: 30px;
 }
+.error{
+    color: red;
+    font-weight: bold;
+}
 a{
     color: red;
 }

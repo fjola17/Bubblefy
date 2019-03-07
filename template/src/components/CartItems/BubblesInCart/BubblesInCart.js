@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 
 const Container = (props) =>{
     var bubbles = Object.keys(props.cartStorage);
@@ -15,5 +15,10 @@ const Container = (props) =>{
         }
         </div>
     )
+}
+// TODO: Fix this mess
+
+Container.propTypes = {
+    cartStorage: PropTypes.objectOf(PropTypes.string).isRequired
 }
 export default Container;

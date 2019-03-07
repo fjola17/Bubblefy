@@ -9,8 +9,8 @@ import { marshallStorage, unmarshallStorage } from '../../../services/Storage';
 
 class StoreDelivery extends React.Component {
 
-    constructor(props){
-        super(props);
+    constructor(){
+        super();
         this.state = {
             fields: {
                 fullName: "",

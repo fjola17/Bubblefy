@@ -14,8 +14,8 @@ class Cart extends React.Component{
             total : 0
         }
     }
-    
-    render(props){  
+
+    render(){  
         console.log(this.state);
         return(
             <div>

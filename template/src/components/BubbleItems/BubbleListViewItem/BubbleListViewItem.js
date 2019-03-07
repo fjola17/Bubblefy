@@ -5,11 +5,11 @@ import propTypes from 'prop-types';
 
 const BubbleViewListItem = (props) =>{
     return(
-        <li className="mb-3 d-flex">            
+        <li className="mb-3 d-flex">
                 <img className="mr-3 flex-column ple-img" src={props.product.image}/>
                 <div className="flex-column">
                 <h4 className="flex-row card-title"><Link to={"/bubbles/" + props.product.id}>{props.product.name}</Link></h4>
-                <div className="flex-row card-text">Price: {props.product.price} kr</div>           
+                <div className="flex-row card-text">Price: {props.product.price} kr</div>
             </div>
         </li>
     )
@@ -22,15 +22,5 @@ BubbleViewListItem.propTypes = {
         price: propTypes.number.isRequired,
         image: propTypes.string.isRequired
     }).isRequired
-}
-
-BubbleViewListItem.defaultProps = {
-    product:
-        {
-            id: 1,
-            name: "Bubble bubble",
-            price: 499,
-            image: "https://i.imgur.com/ZiNsJOp.png"
-        }
 }
 export default BubbleViewListItem;

@@ -2,8 +2,8 @@ import React from 'react';
 import StorePickup from '../StorePickup/StorePickup';
 import StoreDelivery from '../StoreDelivery/StoreDelivery';
 class Pickup extends React.Component{
-    constructor(props){
-        super(props)
+    constructor(){
+        super()
         this.state = {
             store: false,
             deliver: false

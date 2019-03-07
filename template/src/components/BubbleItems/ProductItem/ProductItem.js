@@ -2,7 +2,7 @@ import React from 'react';
 import { apifetch } from '../../../services/ApiFetcher';
 import { productGet, productIncrement } from '../../../services/Storage';
 class ProductItem extends React.Component{
-    
+
     componentDidMount() {
         const id = this.props.match.params.BubbleId;
         apifetch(`bubbles/${id}`)
@@ -48,4 +48,5 @@ class ProductItem extends React.Component{
         )
     }
 }
+
 export default ProductItem;
