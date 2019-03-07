@@ -1,5 +1,6 @@
 import React from 'react';
 import { apifetch } from '../../../services/ApiFetcher';
+import { productGet, productIncrement } from '../../../services/Storage';
 class ProductItem extends React.Component{
     
     componentDidMount() {
@@ -15,29 +16,17 @@ class ProductItem extends React.Component{
         }
     }
 
-    productGet(productName) {
-        return localStorage.getItem(productName);
-    }
-
-    productIncrement(productName) {
-        if (this.productGet(productName) === null) {
-            localStorage.setItem(productName, 1);
-        } else {
-            localStorage.setItem(productName, parseInt(this.productGet(productName)) + 1);
-        }
-    }
-
     incrementCart(productName) {
-        this.productIncrement(productName);
+        productIncrement(productName);
         this.forceUpdate();
     }
 
     render(match){
         var cartInfo = () => {
-            if(this.productGet(this.state.products.name) === null) {
+            if(productGet(this.state.products.name) === null) {
                 return <p>Nothing of this product in cart</p>
             } else {
-                return <p>Ooh baby, so many bubbles. { this.productGet(this.state.products.name) } to be exact</p>
+                return <p>Ooh baby, so many bubbles. { productGet(this.state.products.name) } to be exact</p>
             }
        }
 
