@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import {apifetch} from '../../../services/ApiFetcher';
 import { unmarshallStorage } from '../../../services/Storage';
+
 class LastOrder extends React.Component {
     componentDidMount() {
         apifetch(`orders/${this.props.match.params.telephone}`)
