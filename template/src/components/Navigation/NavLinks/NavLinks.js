@@ -13,6 +13,7 @@ const NavLinks = () =>{
             <li className="nav-item">
             <NavLink to="/About" className="navLinks">About us</NavLink>
             </li>
+            <li className="nav-item"><NavLink to="/Orders" className="navLinks">Orders</NavLink></li>
             <li className="nav-item"><NavLink to="/Cart" className="navLinks">Cart</NavLink></li>
         </ul>
     )
