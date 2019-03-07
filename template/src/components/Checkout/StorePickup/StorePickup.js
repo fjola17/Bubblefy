@@ -1,8 +1,8 @@
 import React from 'react'
 import validator from 'validator';
 import toastr from 'toastr';
-import StoreForm from '../StoreForm/StoreForm';
-import StoreInput from '../StoreInput/StoreInput';
+import Form from '../Form/Form';
+import Input from '../Input/Input';
 
 class StorePickup extends React.Component{
     constructor(props){
@@ -29,12 +29,9 @@ class StorePickup extends React.Component{
     validateForm(){
         const {fullName, phoneNumber} = this.state.fields;
         const errors = {}
-        if(fullName === ""){
-            errors.fullNameError = "Error: Full name is required!";
-        }
-        if(phoneNumber === ""){
-            errors.phoneNumberError = "Error: Phone number is required";
-        }
+        if(fullName === ""){errors.fullNameError = "Error: Full name is required!";}
+        if(phoneNumber === ""){errors.phoneNumberError = "Error: Phone number is required";}
+
         if(Object.keys(errors).length > 0){
             this.setState({...this.state.errors, errors});
             return false;
@@ -57,11 +54,11 @@ class StorePickup extends React.Component{
         const {fullNameError, phoneNumberError} = this.state.errors;
 
         return(
-            <StoreForm onSubmit={e => this.submitForm(e)}>
-            <StoreInput type="text" name="fullName"  label="enter full name" errorMessage={fullNameError} onInput={e=>this.onInput(e)} />
-            <StoreInput type="number" name="phoneNumber"  label="enter your phone number" errorMessage={phoneNumberError} onInput = {e=>this.onInput(e)} />
+            <Form onSubmit={e => this.submitForm(e)}>
+            <Input type="text" name="fullName" value={ fullName } htmlId="fullName" label="Enter full name" errorMessage={fullNameError} onInput={e=>this.onInput(e)} />
+            <Input type="number" name="phoneNumber" value={ phoneNumber } htmlId="phoneNumber" label="Enter your phone number" errorMessage={phoneNumberError} onInput = {e=>this.onInput(e)} />
             <input type="submit" value="Proceed" className="btn btn-primary"/>
-            </StoreForm>
+            </Form>
         )
     }
 }

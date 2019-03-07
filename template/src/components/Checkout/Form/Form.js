@@ -1,6 +1,6 @@
 import React from 'react';
 
-const DeliveryForm = props => {
+const Form = props => {
     return (
         <form onSubmit={props.onSubmit} className="form form-horizontal">
             {props.children}
@@ -8,4 +8,4 @@ const DeliveryForm = props => {
     )
 };
 
-export default DeliveryForm;
+export default Form;

@@ -1,7 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 
-const DeliveryInput = props => {
+const Input = props => {
     const { value, onInput, type, errorMessage, label, name, htmlId} = props;
     return (
         <div className="form-group">
@@ -24,7 +24,7 @@ const DeliveryInput = props => {
     );
 };
 
-DeliveryInput.propTypes = {
+Input.propTypes = {
   /* The value provided to the input HTML tag */
   value: propTypes.string.isRequired,
   htmlId: propTypes.string.isRequired,
@@ -35,4 +35,4 @@ DeliveryInput.propTypes = {
   label: propTypes.string
 };
 
-export default DeliveryInput;
+export default Input;

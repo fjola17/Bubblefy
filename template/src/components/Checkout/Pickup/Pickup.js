@@ -1,6 +1,6 @@
 import React from 'react';
 import StorePickup from '../StorePickup/StorePickup';
-import Delivery from '../Delivery/Delivery';
+import StoreDelivery from '../StoreDelivery/StoreDelivery';
 class Pickup extends React.Component{
     constructor(props){
         super(props)
@@ -13,25 +13,22 @@ class Pickup extends React.Component{
         this.deliverStore = this.deliverStore.bind(this);
     }
     deliverStore(e){
-        console.log("hdkagfka")
         e.preventDefault();
         this.setState({store:true, deliver: false})
         return false
     }
     deliverHome(e){
-        console.log("dkakjfdfa")
         e.preventDefault();
         this.setState({deliver: true, store: false})
         return false
     }
-
 
     render(){
 
         let form;
 
         if(this.state.deliver){
-           form = <Delivery />
+            form = <StoreDelivery />
         }
         else if(this.state.store){
             form = <StorePickup />
