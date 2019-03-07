@@ -1,3 +1,4 @@
+/* Form when user selects the option to get stuff from store */
 import React from 'react'
 import propTypes from 'prop-types';
 

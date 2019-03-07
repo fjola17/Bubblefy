@@ -15,7 +15,8 @@ class Bubbles extends React.Component{
     }
     render(){
         return (
-            <div>
+            <div className="ple">
+                <h2 className="mb-4"> Bubbles Available </h2>
                 <BubbleListView products={this.state.products}/>
             </div>
         )

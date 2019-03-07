@@ -1,14 +1,15 @@
+/* Displays bubble item */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import propTypes from 'prop-types';
 
 const BubbleViewListItem = (props) =>{
     return(
-        <li className="card border-dark mb-3">
-            <div className="ple">
-                <img className="ple-img" src={props.product.image}/>
-                <h4 className="card-title"><Link to={"/bubbles/" + props.product.id}>{props.product.name}</Link></h4>
-                <p className="card-text">{props.product.price}</p>
+        <li className="mb-3 d-flex">            
+                <img className="mr-3 flex-column ple-img" src={props.product.image}/>
+                <div className="flex-column">
+                <h4 className="flex-row card-title"><Link to={"/bubbles/" + props.product.id}>{props.product.name}</Link></h4>
+                <div className="flex-row card-text">Price: {props.product.price} kr</div>           
             </div>
         </li>
     )
