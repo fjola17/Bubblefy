@@ -1,8 +1,9 @@
 import React from 'react'
 import validator from 'validator';
-import toastr from 'toastr';
+import toastr from "toastr";
 import Form from '../Form/Form';
 import Input from '../Input/Input';
+import 'toastr/build/toastr.min.css';
 
 class StorePickup extends React.Component{
     constructor(props){
@@ -29,7 +30,7 @@ class StorePickup extends React.Component{
     validateForm(){
         const {fullName, phoneNumber} = this.state.fields;
         const errors = {}
-        if(fullName === ""){errors.fullNameError = "Error: Full name is required!";}
+        if(fullName === ""){errors.fullNameError = "Error: Full name is required";}
         if(phoneNumber === ""){errors.phoneNumberError = "Error: Phone number is required";}
 
         if(Object.keys(errors).length > 0){
@@ -42,11 +43,11 @@ class StorePickup extends React.Component{
         e.preventDefault();
         if(this.validateForm()){
             console.log(this.state.fields);
-            toastr.success('Form sucessfully submitted');
+            toastr.success('Form sucessfully submitted', "Success!");
         }
         else{
             console.log("I failed");
-            toastr.error("Error: Form didn't sucessfully submit");
+            toastr.error("Error: Form didn't successfully submit", "Failure!");
         }
     }
     render(){

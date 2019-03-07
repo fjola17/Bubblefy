@@ -1,8 +1,9 @@
 import React from 'react';
 import validator from 'validator';
-import toastr from 'toastr';
-import Form from '../Form/Form'
-import Input from '../Input/Input'
+import toastr from "toastr";
+import 'toastr/build/toastr.min.css';
+import Form from '../Form/Form';
+import Input from '../Input/Input';
 
 class StoreDelivery extends React.Component {
 
@@ -53,16 +54,21 @@ class StoreDelivery extends React.Component {
         e.preventDefault();
 
         if(this.validateForm()){
-            toastr.success("Form sucessfully submitted");
+
+            toastr.success("Form sucessfully submitted", "Success!");
         } else {
-            toastr.error("Error: Form didn't sucessfully submit")
+            console.log("Wut");
+            toastr.error("Error: Form didn't successfully submit", "Failure!")
         }
     }
+
+
     render(){
         const {fullName, address, city, phoneNumber, postalCode} = this.state.fields;
         const {fullNameError, addressError, cityError, phoneNumberError, postalCodeError} = this.state.errors;
 
         return(
+
             <Form onSubmit={e => this.submitForm(e)}>
                 <Input type="text" name="fullName" value={ fullName } htmlId="fullName" label="Enter full name" errorMessage={ fullNameError } onInput={e => this.onInput(e)} />
                 <Input type="text" name="address" value={ address } htmlId="address" label="Enter street address" errorMessage={ addressError } onInput={e => this.onInput(e)} />
