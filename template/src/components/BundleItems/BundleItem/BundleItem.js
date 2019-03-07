@@ -1,7 +1,6 @@
-/* Bundle item rechieved */
+/* Bundle item rechieved with bubbles */
 import React from 'react'
 import BubbleListViewForBundle from '../../BubbleItems/BubbleListView/BubbleListViewForBundle'
-import PropTypes from 'prop-types';
 import { apifetch } from '../../../services/ApiFetcher';
 
 class BundleItem extends React.Component {

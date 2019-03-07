@@ -15,12 +15,10 @@ class Pickup extends React.Component{
     deliverStore(e){
         e.preventDefault();
         this.setState({store:true, deliver: false})
-        return false
     }
     deliverHome(e){
         e.preventDefault();
         this.setState({deliver: true, store: false})
-        return false
     }
 
     render(){

@@ -7,6 +7,7 @@ const BundleListItem = (props) => {
         <li className="FrontElement"><Link to={`/bundles/${props.bundle.id}`}>{`${props.bundle.name}`}</Link></li>
     )
 }
+/* Props for each bundle */
 BundleListItem.propTypes = {
     bundle : propTypes.shape({
         id: propTypes.number.isRequired,

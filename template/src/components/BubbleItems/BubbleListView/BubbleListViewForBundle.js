@@ -15,6 +15,7 @@ const BubbleListViewForBundle = (props) => {
             </ul>
     )
 }
+/* Prop types for bubbles inside each bundle */
 BubbleListViewForBundle.propTypes = {
     items: PropTypes.arrayOf(PropTypes.object)
 }

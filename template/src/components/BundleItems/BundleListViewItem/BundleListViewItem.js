@@ -12,7 +12,7 @@ const BundleListViewItem = (props) =>{
         </li>
     )
 }
-
+/* Prop types for bundle list */
 BundleListViewItem.propTypes = {
     bundle : propTypes.shape({
         id: propTypes.number.isRequired,

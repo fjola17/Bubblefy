@@ -1,5 +1,5 @@
 import React from 'react'
-import Pickup from '../Pickup/Pickup'
+import Pickup from '../Pickup/Pickup';
 
 class ProceedOrder extends React.Component{
     constructor(){
@@ -12,7 +12,6 @@ class ProceedOrder extends React.Component{
     getPickupOptions(e) {
         e.preventDefault();
         this.setState({insert: true})
-        return true
     }
     render(){
         if(this.state.insert){

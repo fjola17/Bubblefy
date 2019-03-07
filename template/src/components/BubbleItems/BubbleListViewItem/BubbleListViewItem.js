@@ -15,6 +15,7 @@ const BubbleViewListItem = (props) =>{
     )
 }
 
+/* Prop types for details for each bubble */
 BubbleViewListItem.propTypes = {
     product : propTypes.shape({
         id:propTypes.number.isRequired,

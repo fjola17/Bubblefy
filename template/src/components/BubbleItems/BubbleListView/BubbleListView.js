@@ -13,6 +13,7 @@ const BubbleViewList = (props) =>{
         </div>
     )
 }
+/* Prop types for the bubble list */
 BubbleViewList.propTypes = {
     products: PropTypes.arrayOf(PropTypes.object)
 }

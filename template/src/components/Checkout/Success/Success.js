@@ -3,9 +3,9 @@ import Link from 'react-router-dom/Link';
 
 const Success = () =>{
     return(
-        <div>
-        <p>Your order has been successfully placed </p>
-            <div class="btn btn-success"><Link to="/">Ok</Link></div>
+        <div className="ple text-center">
+        <p className="text-info">Your order has been successfully placed </p>
+            <div className="btn btn-success"><Link className="text-light" to="/">Continue shopping</Link></div>
         </div>
     )
 }

@@ -13,6 +13,7 @@ const BundleLstView = (props) =>{
     )
 }
 
+/* Proptypes for bundle list view */
 BundleLstView.propTypes = {
     bundles: PropTypes.arrayOf(PropTypes.object)
 }

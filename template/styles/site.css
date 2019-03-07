@@ -20,6 +20,7 @@ ul{
 .ple{
     background-color: white;
     border: solid;
+    border-color: red;
 }
 .ple-img{
     height: 75px;
