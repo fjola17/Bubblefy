@@ -15,7 +15,7 @@ class Bundles extends React.Component {
     }
     render(){
         return(
-            <div>
+            <div className="ple">
                 <BundleListView bundles={this.state.bundles}/>
             </div>
         )

@@ -5,7 +5,7 @@ const NavLinks = () =>{
     return (
         <ul className="navbar navbar-expand-lg">
             <li className="nav-item">
-                <NavLink to="/Bubbles" className="navLinks">Bubbles</NavLink>
+                <NavLink to="/Bubbles" className="navLinks">Products</NavLink>
             </li>
             <li className="nav-item">
             <NavLink to="/Bundles" className="navLinks">Bundles</NavLink>
@@ -13,6 +13,7 @@ const NavLinks = () =>{
             <li className="nav-item">
             <NavLink to="/About" className="navLinks">About us</NavLink>
             </li>
+            <li className="nav-item"><NavLink to="/Orders" className="navLinks">Orders</NavLink></li>
             <li className="nav-item"><NavLink to="/Cart" className="navLinks">Cart</NavLink></li>
         </ul>
     )

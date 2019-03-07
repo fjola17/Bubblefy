@@ -11,7 +11,7 @@ else
     echo "Make sure that npm start works on both server and template!"
     echo "Killing old sessions if found... please wait"
     tmux kill-session -t bubble
-    sleep 3
+    sleep 0.2
 
 
     tmux new-session -s bubble -d

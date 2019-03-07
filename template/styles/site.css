@@ -38,3 +38,11 @@ ul{
     width: 700px;
     margin: auto;
 }
+.FrontElement{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 26px;
+    margin: 30px;
+}
+a{
+    color: red;
+}
