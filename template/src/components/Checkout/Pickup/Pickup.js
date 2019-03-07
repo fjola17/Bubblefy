@@ -7,6 +7,7 @@ class Pickup extends React.Component{
         this.state = {
             store: false,
             deliver: false
+
         }
         this.deliverHome = this.deliverHome.bind(this);
         this.deliverStore = this.deliverStore.bind(this);
@@ -14,30 +15,32 @@ class Pickup extends React.Component{
     deliverStore(e){
         console.log("hdkagfka")
         e.preventDefault();
-        this.setState({store:true})
+        this.setState({store:true, deliver: false})
         return false
     }
     deliverHome(e){
         console.log("dkakjfdfa")
         e.preventDefault();
-        this.setState({deliver: true})
+        this.setState({deliver: true, store: false})
         return false
     }
+
+
     render(){
-      /*  if(!this.deliverHome){
-           return( <div>hello</div>)
+
+        let form;
+
+        if(this.state.deliver){
+           form = <Delivery />
         }
-        if(!this.deliverStore){
-            return (<div>ble</div>)
+        else if(this.state.store){
+            form = <StorePickup />
         }
-        else if(this.deliverHome && this.deliverStore){
-        */return(
+        return(
             <div>
                 <div className="btn btn-primary" onClick={(e) => this.deliverStore(e)}>Store pickup</div>
                 <div className="btn btn-primary" onClick={(e) => this.deliverHome(e)}>Deliver </div>
-                <StorePickup />
-                <Delivery />
-
+                {form}
             </div>
         )
     }
