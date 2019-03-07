@@ -11,7 +11,9 @@ const Form = props => {
 };
 
 Form.propTypes = {
+    //onSubmit function to check validation and send data
     onSubmit: PropTypes.func.isRequired,
+    //Array of Input
     children: PropTypes.array.isRequired
 }
 

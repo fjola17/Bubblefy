@@ -1,5 +1,4 @@
 import React from 'react'
-import validator from 'validator';
 import toastr from "toastr";
 import Form from '../Form/Form';
 import Input from '../Input/Input';
@@ -55,12 +54,14 @@ class StorePickup extends React.Component{
             apiput(this.state.fields.phoneNumber, JSON.stringify(order))
             unmarshallStorage("{}") //empties local storage of only bubble related items
             toastr.success("Form sucessfully submitted", "Success!");
+
             this.setState({redirect: true})
         }
         else{
             toastr.error("Error: Form didn't successfully submit", "Failure!");
         }
     }
+    //Made to redirect on successfull purchase
     renderRedirect(){
         if (this.state.redirect) {
             return <Redirect to='/Success' />

@@ -25,9 +25,9 @@ const Container = (props) =>{
         </div>
     )
 }
-// TODO: Fix this mess
-
+// TODO: Find proptype of cartStorage
+/*
 Container.propTypes = {
     cartStorage: PropTypes.objectOf(PropTypes.string)
-}
+}*/
 export default Container;

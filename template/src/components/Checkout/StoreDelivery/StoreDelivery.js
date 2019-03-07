@@ -1,5 +1,4 @@
 import React from 'react';
-import validator from 'validator';
 import toastr from 'toastr';
 import Form from '../Form/Form';
 import Input from '../Input/Input';
@@ -74,6 +73,7 @@ class StoreDelivery extends React.Component {
 
         }
     }
+    //Made to redirect on successfull purchase
     renderRedirect(){
         if (this.state.redirect) {
             return <Redirect to='/Success' />
