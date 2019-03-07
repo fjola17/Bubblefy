@@ -19,6 +19,6 @@ const Container = (props) =>{
 // TODO: Fix this mess
 
 Container.propTypes = {
-    cartStorage: PropTypes.objectOf(PropTypes.string).isRequired
+    cartStorage: PropTypes.objectOf(PropTypes.string)
 }
 export default Container;
