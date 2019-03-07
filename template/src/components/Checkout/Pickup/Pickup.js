@@ -1,6 +1,6 @@
 import React from 'react';
 import StorePickup from '../StorePickup/StorePickup';
-
+import Delivery from '../Delivery/Delivery';
 class Pickup extends React.Component{
     constructor(props){
         super(props)
@@ -36,11 +36,12 @@ class Pickup extends React.Component{
                 <div className="btn btn-primary" onClick={(e) => this.deliverStore(e)}>Store pickup</div>
                 <div className="btn btn-primary" onClick={(e) => this.deliverHome(e)}>Deliver </div>
                 <StorePickup />
-   
+                <Delivery />
+
             </div>
         )
     }
-        
-    
+
+
 }
 export default Pickup;
