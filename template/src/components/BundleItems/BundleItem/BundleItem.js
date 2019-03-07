@@ -1,3 +1,4 @@
+/* Bundle item rechieved */
 import React from 'react'
 import BubbleListViewForBundle from '../../BubbleItems/BubbleListView/BubbleListViewForBundle'
 import { apifetch } from '../../../services/ApiFetcher';
@@ -33,10 +34,8 @@ class BundleItem extends React.Component {
         console.log(this.state);
         return(
             <li className="card border-dark mb-3">
-                <div className="ple">
                     <h4 className="card-title">{this.state.bundle.name}</h4>
                     <BubbleListViewForBundle items={this.state.items} />
-                </div>
             </li>
         )
     }

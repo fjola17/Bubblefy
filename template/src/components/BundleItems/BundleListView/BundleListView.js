@@ -1,16 +1,17 @@
+/* List of bundles */
 import React from 'react';
 import { Link } from 'react-router-dom';
 
 const BundleLstView = (props) =>{
-    console.log(props);
     return(
-        <ul className="list-view">
+        <div className="ple">
+        <h2>Bundles Available </h2>
             {props.bundles.map(
                 bundle => {
-                    return <Link to={`/bundles/${bundle.id}`}>{`${bundle.name}`}</Link>
+                    return <h3 className="mt-5"><Link to={`/bundles/${bundle.id}`}>{`${bundle.name}`}</Link></h3>
                 }
             )}
-        </ul>
+        </div>
     )
 }
 export default BundleLstView;
