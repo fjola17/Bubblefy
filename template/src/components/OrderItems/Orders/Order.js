@@ -46,7 +46,7 @@ class Order extends React.Component{
             if(this.state.orders.length == 0) {
                 return <div>No orders found for {this.state.number}</div>
             } else {
-                return <div>{JSON.stringify(this.state.orders)}</div>
+                return <OrderListView orders={this.state.orders} />
             }
         }
         return (
