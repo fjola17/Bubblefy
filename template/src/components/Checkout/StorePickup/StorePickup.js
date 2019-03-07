@@ -3,6 +3,10 @@ import validator from 'validator';
 import toastr from 'toastr';
 import Form from '../Form/Form';
 import Input from '../Input/Input';
+import { apiput } from '../../../services/ApiFetcher';
+import { marshallStorage, unmarshallStorage } from '../../../services/Storage';
+
+
 
 class StorePickup extends React.Component{
     constructor(props){
@@ -42,6 +46,14 @@ class StorePickup extends React.Component{
         e.preventDefault();
         if(this.validateForm()){
             console.log(this.state.fields);
+            var order = {
+                fields: this.state.fields,
+                bubbles: JSON.parse(marshallStorage())
+            }
+
+            apiput(this.state.fields.phoneNumber, JSON.stringify(order))
+            unmarshallStorage("{}") //empties local storage of only bubble related items
+
             toastr.success('Form sucessfully submitted');
         }
         else{

@@ -3,6 +3,8 @@ import validator from 'validator';
 import toastr from 'toastr';
 import Form from '../Form/Form'
 import Input from '../Input/Input'
+import { apiput } from '../../../services/ApiFetcher';
+import { marshallStorage, unmarshallStorage } from '../../../services/Storage';
 
 class StoreDelivery extends React.Component {
 
@@ -53,8 +55,17 @@ class StoreDelivery extends React.Component {
         e.preventDefault();
 
         if(this.validateForm()){
+            var order = {
+                fields: this.state.fields,
+                bubbles: JSON.parse(marshallStorage())
+            }
+
+            apiput(this.state.fields.phoneNumber, JSON.stringify(order))
+            unmarshallStorage("{}") //empties local storage of only bubble related items
+
             toastr.success("Form sucessfully submitted");
         } else {
+        console.log("neinei");
             toastr.error("Error: Form didn't sucessfully submit")
         }
     }
