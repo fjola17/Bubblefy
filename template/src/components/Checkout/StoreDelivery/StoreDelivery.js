@@ -1,8 +1,9 @@
 import React from 'react';
 import validator from 'validator';
 import toastr from 'toastr';
-import Form from '../Form/Form'
-import Input from '../Input/Input'
+import Form from '../Form/Form';
+import Input from '../Input/Input';
+import { Redirect  } from 'react-router-dom/';
 import { apiput } from '../../../services/ApiFetcher';
 import { marshallStorage, unmarshallStorage } from '../../../services/Storage';
 
@@ -25,7 +26,8 @@ class StoreDelivery extends React.Component {
                 cityError: "",
                 phoneNumberError: "",
                 postalCodeError: ""
-            }
+            },
+            redirect: false
 
         };
     }
@@ -66,13 +68,18 @@ class StoreDelivery extends React.Component {
             unmarshallStorage("{}") //empties local storage of only bubble related items
 
             toastr.success("Form sucessfully submitted", "Success!");
+            this.setState({redirect: true})
         } else {
             console.log("neinei");
             toastr.error("Error: Form didn't sucessfully submit", "Failure!")
 
         }
     }
-
+    renderRedirect(){
+        if (this.state.redirect) {
+            return <Redirect to='/Success' />
+        }
+    }
 
     render(){
         const {fullName, address, city, phoneNumber, postalCode} = this.state.fields;
@@ -87,6 +94,7 @@ class StoreDelivery extends React.Component {
                 <Input type="number" name="phoneNumber" value={ phoneNumber } htmlId="phoneNumber" label="Enter phone number" errorMessage={ phoneNumberError } onInput={e => this.onInput(e)} />
                 <Input type="text" name="postalCode" value={ postalCode } htmlId="postalCode" label="Enter postal code" errorMessage={ postalCodeError } onInput={e => this.onInput(e)} />
                 <input type="submit" value="Proceed" className="btn btn-primary"/>
+                {this.renderRedirect()}
             </Form>
 
         )

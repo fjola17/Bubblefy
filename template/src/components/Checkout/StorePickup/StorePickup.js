@@ -3,6 +3,7 @@ import validator from 'validator';
 import toastr from "toastr";
 import Form from '../Form/Form';
 import Input from '../Input/Input';
+import { Redirect  } from 'react-router-dom';
 import 'toastr/build/toastr.min.css';
 import { apiput } from '../../../services/ApiFetcher';
 import { marshallStorage, unmarshallStorage } from '../../../services/Storage';
@@ -18,7 +19,8 @@ class StorePickup extends React.Component{
             errors:{
                 fullNameError: '',
                 phoneNumberError: ''
-            }
+            },
+            redirect: false
         }
     }
     onInput(e){
@@ -41,6 +43,7 @@ class StorePickup extends React.Component{
         }
         return true;
     }
+
     submitForm(e){
         e.preventDefault();
         if(this.validateForm()){
@@ -52,13 +55,17 @@ class StorePickup extends React.Component{
 
             apiput(this.state.fields.phoneNumber, JSON.stringify(order))
             unmarshallStorage("{}") //empties local storage of only bubble related items
-
             toastr.success("Form sucessfully submitted", "Success!");
-
+            this.setState({redirect: true})
         }
         else{
             console.log("I failed");
             toastr.error("Error: Form didn't successfully submit", "Failure!");
+        }
+    }
+    renderRedirect(){
+        if (this.state.redirect) {
+            return <Redirect to='/Success' />
         }
     }
     render(){
@@ -67,9 +74,10 @@ class StorePickup extends React.Component{
 
         return(
             <Form onSubmit={e => this.submitForm(e)}>
-            <Input type="text" name="fullName" value={ fullName } htmlId="fullName" label="Enter full name" errorMessage={fullNameError} onInput={e=>this.onInput(e)} />
-            <Input type="number" name="phoneNumber" value={ phoneNumber } htmlId="phoneNumber" label="Enter your phone number" errorMessage={phoneNumberError} onInput = {e=>this.onInput(e)} />
-            <input type="submit" value="Proceed" className="btn btn-primary"/>
+                <Input type="text" name="fullName" value={ fullName } htmlId="fullName" label="Enter full name" errorMessage={fullNameError} onInput={e=>this.onInput(e)} />
+                <Input type="number" name="phoneNumber" value={ phoneNumber } htmlId="phoneNumber" label="Enter your phone number" errorMessage={phoneNumberError} onInput = {e=>this.onInput(e)} />
+                <input type="submit" value="Proceed" className="btn btn-primary"/>
+                {this.renderRedirect()}
             </Form>
         )
     }
