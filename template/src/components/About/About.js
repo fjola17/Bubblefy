@@ -10,9 +10,11 @@ class About extends React.Component{
                     <p>Founded in 2018 in Iceland</p>
                 </div>
                 <p>This website was created by the following developers in 2019</p>
-                <div>Fjóla Sif Sigvaldadóttir (fjola17@ru.is)</div>
-                <div>Viðar Sigurðsson </div>
-                <div>Þorsteinn Sævar Kristjánsson </div>
+                <div className="d-flex">
+                    <div className="flex-column"><img className="w-50 h-50" src="http://run-3.online/upload/cache/upload/imgs/bubble-trouble-c400x300.png"/><p>Fjóla Sif Sigvaldadóttir</p></div>
+                    <div className="flex-column"><img className="w-50 h-50" src="http://run-3.online/upload/cache/upload/imgs/bubble-trouble-c400x300.png"/><p>Viðar Sigurðsson</p> </div>
+                    <div className="flex-column"><img className="w-50 h-50" src="http://run-3.online/upload/cache/upload/imgs/bubble-trouble-c400x300.png"/><p> Þorsteinn Sævar Kristjánsson</p> </div>
+                </div>
             </div>
         )
     }
