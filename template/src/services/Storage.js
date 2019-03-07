@@ -4,11 +4,11 @@ const productGet = (productName) => {
 }
 
 //Increments a product by 'productName' in storage
-const productIncrement = (productName) => {
+const productIncrement = (productName, quanta) => {
     if (localStorage.getItem(`bubbles::${productName}`) === null) {
-        localStorage.setItem(`bubbles::${productName}`, 1);
+        localStorage.setItem(`bubbles::${productName}`, quanta);
     } else {
-        localStorage.setItem(`bubbles::${productName}`, parseInt(localStorage.getItem(`bubbles::${productName}`)) + 1);
+        localStorage.setItem(`bubbles::${productName}`, parseInt(localStorage.getItem(`bubbles::${productName}`)) + quanta);
     }
 }
 
