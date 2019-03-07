@@ -21,10 +21,9 @@ const marshallStorage = () => {
         }
     )
     var relevantStorage = {};
-    for(i = 0; i < keys.length; i++) {
+    for(var i = 0; i < keys.length; i++) {
         relevantStorage[keys[i]] = localStorage[keys[i]];
     }
-
     return JSON.stringify(relevantStorage)
 }
 
@@ -42,11 +41,11 @@ const unmarshallStorage = (json) => {
         }
     )
 
-    for(i = 0; i < previousKeys.length; i++) {
+    for(var i = 0; i < previousKeys.length; i++) {
         localStorage.removeItem(previousKeys[i])
     }
 
-    for(i = 0; i < keys; i++) {
+    for(var i = 0; i < keys; i++) {
         localStorage.setItem(key, storedObject[key]);
     }
 }
@@ -54,5 +53,6 @@ const unmarshallStorage = (json) => {
 export {
     productGet,
     productIncrement,
-    marshallStorage
+    marshallStorage,
+    unmarshallStorage
 }
