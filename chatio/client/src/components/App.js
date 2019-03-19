@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import ChatWindow from './ChatWindow/ChatWindow';
 import SocketContext from '../contexts/SocketContext';
 
@@ -25,6 +26,7 @@ class App extends React.Component{
     }
     render(){
         console.log(this.state.users);
+        const users={users}
         return(
             <div className="container">
             <ChatWindow />
@@ -33,4 +35,4 @@ class App extends React.Component{
     }
 }
 App.contextType = SocketContext;
-export default App
+export default App;

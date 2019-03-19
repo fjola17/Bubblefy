@@ -1,5 +1,7 @@
 import React from 'react'
-import UserName from '../UserName/UserName'
+import UserName from '../UserName/UserName';
+import './chatWindow.css';
+
 class ChatWindow extends React.Component{
     componentDidMount(props){
 
