@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import ChatWindow from './ChatWindow/ChatWindow';
 import SocketContext from '../contexts/SocketContext';
 
@@ -7,26 +6,36 @@ class App extends React.Component{
     componentDidMount(){
 
         const { socket } = this.context;
-       //console.log(socket); 
-        socket.on('users', userlist => {
-           this._populateUserList(userList);
-       });
-    }
-    _populateUserList(userList){
-        this.setState({
-            users: userList.map((u, idx) => '`User ${idx + 1}`')
-        })
-    }
+    socket.on('users', userList =>{
+        this._populateUserList(userList);
+    });
+    socket.on('rooms', roomList =>{
+        this._populateRooms(roomList);
+    })
+ }
+ _populateRooms(roomList){
+     this.setState({
+         rooms: roomList.map((r, id) => r)
+     })
+ }
+ _populateUserList(userList){
+     this.setState({
+         users: userList.map((u, idx) => u)
+     })
+ }
+    
     constructor(props){
         super(props);
         this.state = {
             users: [],
-            rooms: {}
+            rooms: []
         }
     }
     render(){
-        console.log(this.state.users);
         const users={users}
+        const rooms={rooms}
+        console.log(rooms);
+        console.log(users);
         return(
             <div className="container">
             <ChatWindow />
