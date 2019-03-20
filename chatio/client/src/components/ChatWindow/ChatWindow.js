@@ -1,10 +1,10 @@
 import React from 'react'
+import { connect } from 'react-redux';
 import UserName from '../UserName/UserName';
 import './chatWindow.css';
 
 class ChatWindow extends React.Component{
     componentDidMount(props){
-
     }
     constructor(props){
         super(props)
@@ -12,7 +12,6 @@ class ChatWindow extends React.Component{
     render(){
         return(
             <div className="chat-window">
-                <UserName />
                 <ChatWindow.Title />
                 <ChatWindow.Users />
                 <ChatWindow.Messages />
@@ -24,7 +23,7 @@ class ChatWindow extends React.Component{
         )
     }
 }
-ChatWindow.Title = () =>(
+ChatWindow.Title = props =>(
     <h3 className="title">Club penguin</h3>
 );
 ChatWindow.Messages = props => (
@@ -32,5 +31,11 @@ ChatWindow.Messages = props => (
 );
 ChatWindow.Users = props => (
     <div className="users">me!</div>
-)
-export default ChatWindow;
+);
+
+const mapStateToProps = (reduxState) => {
+    console.log(reduxState);
+    return reduxState;
+}
+
+export default connect(mapStateToProps)(ChatWindow);

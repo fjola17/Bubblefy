@@ -20,8 +20,9 @@ class UserName extends React.Component {
     onFormSubmit(e) {
         e.preventDefault();
         if (this.props.userName !== '') {
-            const { userName, rooms } = this.props;
+            const { userName, rooms } = this.state;
             const { updateUser } = this.props;
+            console.log(`username: ${ userName }`)
             updateUser({ userName, rooms });
             this.setState({ hasName: true });
         } else {
@@ -30,7 +31,6 @@ class UserName extends React.Component {
     }
     render() {
         const { userName, hasName } = this.state;
-        console.log(userName);
         if (!hasName) {
             return (
                 <div className="user-name">
@@ -52,7 +52,6 @@ class UserName extends React.Component {
 }
 
 const mapStateToProps = reduxStoreState => {
-    console.log(reduxStoreState);
     return {
         "": ""
     }

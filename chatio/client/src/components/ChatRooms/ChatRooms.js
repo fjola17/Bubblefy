@@ -1,6 +1,7 @@
 //here user can see all the chatrooms, and join one
 //different componment for creating a chatroom??
 import React from 'react';
+import { Link } from 'react-router-dom';
 import connect from 'react-redux';
 
 class ChatRooms extends React.Component{
@@ -20,7 +21,7 @@ class ChatRooms extends React.Component{
         return(
             <div>
                 <h1 className="room-list">List of all available chatrooms</h1>
-                <div className="chat-room">Snowball heaven</div>
+                <div className="chat-room"><Link to="/room/snowball">Snowball heaven</Link></div>
                 </div>
         )
     }
