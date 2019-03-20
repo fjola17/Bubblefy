@@ -3,28 +3,46 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import connect from 'react-redux';
+import { socket } from '../../services/socketService';
 
 class ChatRooms extends React.Component{
     componentDidMount(){
-        const {socket} = this.context;
-        this.setState={            
-            rooms : this.rooms
-        }
-    }
+        socket.emit('rooms');
+        socket.on('roomlist', rooms => {
+            console.log(rooms);
+            this.setState({            
+                rooms : Object.keys(rooms)
+            });
+        })
+   }
     constructor(props){
         super(props);
         this.state = {
-            rooms : {}
+            rooms : []
         }
     }
-    render(){
+
+    createRoom(roomName) {
+        console.log(roomName);
+        this.setState({
+            rooms: [...this.state.rooms, roomName]
+        });
+    }
+
+   render(){
         return(
             <div>
                 <h1 className="room-list">List of all available chatrooms</h1>
-                <div className="chat-room"><Link to="/room/snowball">Snowball heaven</Link></div>
-                </div>
-        )
+                <button className="btn btn-primary" onClick={() => this.createRoom(prompt("herherbig"))}>Create Room</button>
+                <ChatRooms.roomList rooms={this.state.rooms} />
+             </div>
+        );
     }
+
+     
 }
+ChatRooms.roomList = props => (
+    props.rooms.map(room => <div className="chat-room"><Link to={`/room/${room}`}>{ room }</Link></div>)
+);
 
 export default ChatRooms;
