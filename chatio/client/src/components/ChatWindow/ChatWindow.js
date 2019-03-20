@@ -6,14 +6,20 @@ import './chatWindow.css';
 
 class ChatWindow extends React.Component{
     componentDidMount(props){
-        const { roomName } = this.props.match.params;
-        socket.emit('joinroom', {room: roomName}, (response, reason) => {
+        const { RoomName } = this.props.match.params;
+        console.log(RoomName);
+        socket.emit('joinroom', {room: RoomName}, (response, reason) => {
             if(response) {
                 this.setState({ roomJoined: true });
             } else {
                 alert(`Couldn't join room because: ${reason}`);
             }
         });
+        socket.on('updatechat', (roomName, messageHistory) => {
+            if(roomName === this.state.roomName) {
+                this.setState({ messages: messageHistory });
+            }
+        })
         this.setState({ roomName: this.props.match.params.RoomName })
     }
     constructor(props){
@@ -21,19 +27,32 @@ class ChatWindow extends React.Component{
         this.state = {
             roomName: "",
             roomJoined: false,
+            message: "",
+            messages: []
         }
     }
+
+    sendMessage() {
+        if(this.state.message !== '') {
+            socket.emit('sendmsg', {roomName: this.state.roomName, msg: this.state.message})
+        }
+    }
+
+    onInput(e) {
+        this.setState({ [e.target.name]: e.target.value });
+    }
+
     render(){
-        const { roomJoined, roomName } = this.state;
+        const { roomJoined, roomName, messages } = this.state;
         if(roomJoined) {
             return(
                 <div className="chat-window">
                     <ChatWindow.Title roomName={roomName} />
                     <ChatWindow.Users />
-                    <ChatWindow.Messages />
+                    <ChatWindow.Messages messages = { messages } />
                     <div className="input-container">
-                        <input type="text" placeholder="Please enter your message" />
-                        <button className="btn btn-primary" type="button">Send</button>
+                        <input type="text" name="message" onChange={e => this.onInput(e)} placeholder="Please enter your message" />
+                        <button className="btn btn-primary" onClick={() => this.sendMessage()} type="button">Send</button>
                     </div>
                 </div>
             )
@@ -48,7 +67,7 @@ ChatWindow.Title = props =>(
     <h3 className="title">{props.roomName}</h3>
 );
 ChatWindow.Messages = props => (
-    <div className="messages">blee</div>
+    props.messages.map(msg => <div key={ msg.timestamp } className="messages">{ msg.nick }: { msg.message }</div>)
 );
 ChatWindow.Users = props => (
     <div className="users">me!</div>
