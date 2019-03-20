@@ -7,6 +7,7 @@ import './chatWindow.css';
 import toastr from 'toastr';
 import 'toastr/build/toastr.min.css';
 import PropTypes from 'prop-types';
+import UserOps from '../UserOps/UserOps';
 
 
 class ChatWindow extends React.Component {
@@ -125,7 +126,7 @@ ChatWindow.Ops=props => (
 );
 
 ChatWindow.Users=props => (
-    props.users.map(user => <div className="user" key={user}>{user} <a href="#" id={user} name={props.roomName} onClick={e => props.kickFunc(e)}>KICK</a></div>)
+    props.users.map(user => <div className="user" key={user}>{user} <UserOps/><a href="#" id={user} name={props.roomName} onClick={e => props.kickFunc(e)}>KICK</a></div>)
 );
 
 ChatWindow.propTypes = {
