@@ -44,7 +44,7 @@ class UserName extends React.Component {
                     <h2>Please enter your user name</h2>
                     <div id="user-form">
                         <form action="submit" onSubmit={e => this.onFormSubmit(e)}>
-                            <input type="text" name="userName" onInput={e => this.onInput(e)} placeholder="Please enter your username" />
+                            <input type="text" name="userName" onInput={e => this.onInput(e)} onKeyDown={e => {if(e.keyCode == 13) { this.onFormSubmit(e) } }} placeholder="Please enter your username" />
                             <button className="btn btn-primary">Confirm</button>
                         </form>
                     </div>

@@ -32,9 +32,10 @@ class ChatWindow extends React.Component{
         }
     }
 
-    sendMessage() {
-        if(this.state.message !== '') {
-            socket.emit('sendmsg', {roomName: this.state.roomName, msg: this.state.message})
+    sendMessage(keycode = 13) {
+        if(this.state.message !== '' && keycode == 13) {
+            socket.emit('sendmsg', {roomName: this.state.roomName, msg: this.state.message});
+            this.setState({ message: ""});
         }
     }
 
@@ -51,7 +52,7 @@ class ChatWindow extends React.Component{
                     <ChatWindow.Users />
                     <ChatWindow.Messages messages = { messages } />
                     <div className="input-container">
-                        <input type="text" name="message" onChange={e => this.onInput(e)} placeholder="Please enter your message" />
+                        <input type="text" name="message" value={this.state.message} onChange={e => this.onInput(e)} onKeyDown={e => this.sendMessage(e.keyCode)} placeholder="Please enter your message" />
                         <button className="btn btn-primary" onClick={() => this.sendMessage()} type="button">Send</button>
                     </div>
                 </div>
