@@ -7,6 +7,8 @@ import 'toastr/build/toastr.min.css';
 import ChatRooms from '../ChatRooms/ChatRooms';
 import { updateUser } from '../../actions/UserActions';
 import { socket } from '../../services/socketService';
+import PropTypes from 'prop-types';
+
 
 class UserName extends React.Component {
     constructor(props) {
@@ -64,6 +66,10 @@ const mapStateToProps = reduxStoreState => {
     return {
         "": ""
     }
+}
+
+UserName.propTypes = {
+    userName: PropTypes.string
 }
 
 export default connect(mapStateToProps, { updateUser })(UserName);//connect(mapStateToProps, {updateUser})(UserName);
