@@ -24,7 +24,7 @@ class ChatRooms extends React.Component{
 
     createRoom(roomName) {
         console.log(roomName);
-        if(this.state.rooms.indexOf(roomName) !== -1) {
+        if(this.state.rooms.indexOf(roomName) === -1) {
             this.setState({
                 rooms: [...this.state.rooms, roomName]
             });

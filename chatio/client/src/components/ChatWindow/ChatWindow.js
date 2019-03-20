@@ -1,36 +1,42 @@
 import React from 'react'
-import { Redirect } from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {socket} from '../../services/socketService';
 import UserName from '../UserName/UserName';
 import './chatWindow.css';
 
 class ChatWindow extends React.Component {
+    activateListeners() {
+        const { RoomName } = this.props.match.params;
+        socket.on('updateusers',(room,users,ops) => {
+            if(Object.keys(users).indexOf(this.props.user.userName) == -1 && 
+                Object.keys(ops).indexOf(this.props.user.userName) == -1) {
+                this.setState({kicked: true})
+            }
+            if(room == RoomName) {
+                this.setState({users: Object.keys(users), ops: Object.keys(ops)});
+            }
+        });
+
+        socket.on('updatechat',(roomName,messageHistory) => {
+            if(roomName===this.state.roomName) {
+                this.setState({messages: messageHistory});
+            }
+        });
+
+    }
+
     componentDidMount(props) {
         const {RoomName}=this.props.match.params;
-        if(this.props.user.userName !== "") {
-            //Start listening for updateusers before we trigger the joinroom emission
-            socket.on('updateusers', (room, users, ops) => {
-                console.log(users);
-                if(room == RoomName) {
-                    this.setState({ users: Object.keys(users) });
-                }
-            });
-
+        if(this.props.user.userName!=="") {
+            this.activateListeners();
             socket.emit('joinroom',{room: RoomName},(response,reason) => {
                 if(response) {
-                    this.setState({roomJoined: true});
+                    this.setState({roomJoined: true, roomName: RoomName});
                 } else {
                     alert(`Couldn't join room because: ${reason}`);
                 }
             });
-
-            socket.on('updatechat',(roomName,messageHistory) => {
-                if(roomName===this.state.roomName) {
-                    this.setState({messages: messageHistory});
-                }
-            });
-            this.setState({roomName: this.props.match.params.RoomName})
         } else {
             this.setState({redirect: true})
         }
@@ -43,7 +49,9 @@ class ChatWindow extends React.Component {
             message: "",
             messages: [],
             users: [],
-            redirect: false
+            ops: [],
+            redirect: false,
+            kicked: false,
         }
     }
 
@@ -58,10 +66,20 @@ class ChatWindow extends React.Component {
         this.setState({[e.target.name]: e.target.value});
     }
 
-    render() {
-        const {roomJoined,roomName,messages,redirect,users}=this.state;
+    kickUser(e) {
+        const userName=e.target.id;
+        const roomName=e.target.name;
+        socket.emit('kick',{user: userName,room: roomName},(response) => {
+            if(response) {
+                //Alert or toastr success?
+            }
+        })
+    }
 
-        if(redirect) {
+    render() {
+        const {roomJoined,roomName,messages,redirect,users,kicked,ops}=this.state;
+
+        if(redirect||kicked) {
             return (
                 <Redirect to="/" />
             )
@@ -72,7 +90,8 @@ class ChatWindow extends React.Component {
                 <div className="chat-window">
                     <ChatWindow.Title roomName={roomName} />
                     <div className="users">
-                        <ChatWindow.Users users={users}/>
+                        <ChatWindow.Ops ops={ops} />
+                        <ChatWindow.Users users={users} roomName={roomName} kickFunc={this.kickUser} />
                     </div>
                     <ChatWindow.Messages messages={messages} />
                     <div className="input-container">
@@ -91,11 +110,17 @@ class ChatWindow extends React.Component {
 ChatWindow.Title=props => (
     <h3 className="title">{props.roomName}</h3>
 );
+
 ChatWindow.Messages=props => (
     props.messages.map(msg => <div key={msg.timestamp} className="messages">{msg.nick}: {msg.message}</div>)
 );
+
+ChatWindow.Ops=props => (
+    props.ops.map(op => <div className="user op" key={op}>{op}</div>)
+);
+
 ChatWindow.Users=props => (
-    props.users.map(user => <div className="user" key={user}>{user}</div>)
+    props.users.map(user => <div className="user" key={user}>{user} <a href="#" id={user} name={props.roomName} onClick={e => props.kickFunc(e)}>KICK</a></div>)
 );
 
 const mapStateToProps=(reduxState) => {

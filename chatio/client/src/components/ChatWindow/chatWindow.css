@@ -35,3 +35,7 @@ input{
     border-top: solid 1px black;
     padding: 10px 0;
 }
+
+.chat-window .op {
+    color: yellow;
+}
