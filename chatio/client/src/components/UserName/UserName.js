@@ -1,6 +1,6 @@
 //Here user can set username
 import React from 'react';
-import connect from 'react-redux';
+import { connect } from 'react-redux';
 //import SocketContext from '../../contexts/SocketContext';
 import ChatRooms from '../ChatRooms/ChatRooms';
 import { updateUser} from '../../actions/UserActions';
@@ -10,6 +10,7 @@ class UserName extends React.Component{
     constructor(props){
         super(props);
         this.state = {
+            hasName : false,
             userName : "",
             rooms: {}
         }
@@ -19,20 +20,25 @@ class UserName extends React.Component{
     }
     onFormSubmit(e){
         e.preventDefault();
-        const {userName, rooms} = this.props;
-        const {updateUser} = this.props;
-        updateUser({userName, rooms});
+        if(this.props.userName !== '') {
+            const {userName, rooms} = this.props;
+            const {updateUser} = this.props;
+            updateUser({userName, rooms});
+            this.setState({ hasName: true });
+        } else {
+            // Toastr display "username can't be blank"?
+        }
     }
     render(){
-        const userName = this.state.userName;
+        const {userName, hasName} = this.state;
         console.log(userName);
-        if(userName === ''){
+        if(!hasName){
             return(
                 <div className="user-name">
                 <h2>Please enter your user name</h2>
                 <div id="user-form">
-                        <form action="submit">
-                        <input type="text" placeholder="Please enter your username"/>
+                    <form action="submit" onSubmit={ e => this.onFormSubmit(e) }>
+                        <input type="text" name="userName" onInput={ e => this.onInput(e) } placeholder="Please enter your username"/>
                         <button className="btn btn-primary">Confirm</button>
                     </form>
                     </div>
@@ -45,12 +51,12 @@ class UserName extends React.Component{
             )
         }
     }
-}/*
+}
 const mapStateToProps = reduxStoreState =>{
-    //const {UserName}
+    console.log(reduxStoreState);
     return{
         "": ""
     }
 
-}*/
-export default UserName;//connect(mapStateToProps, {updateUser})(UserName);
+}
+export default connect(mapStateToProps, {updateUser})(UserName);//connect(mapStateToProps, {updateUser})(UserName);

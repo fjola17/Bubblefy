@@ -32,6 +32,7 @@ class App extends React.Component{
             rooms: []
         }
     }
+
     render(){
         const users={users}
         const rooms={rooms}
@@ -39,7 +40,7 @@ class App extends React.Component{
         console.log(users);
         return(
             <div className="container">
-            <UserName />
+                <UserName />
             </div>
         )
     }
