@@ -55,6 +55,7 @@ io.on('connection', function (socket) {
 			users[socket.username].channels[room] = room;
 			//Send the room information to the client.
 			fn(true);
+			console.log(room, rooms[room].users, rooms[room].ops);
 			io.sockets.emit('updateusers', room, rooms[room].users, rooms[room].ops);
 			//Update topic
 			socket.emit('updatetopic', room, rooms[room].topic, socket.username);

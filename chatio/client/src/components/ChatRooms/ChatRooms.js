@@ -4,13 +4,17 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import connect from 'react-redux';
 import { socket } from '../../services/socketService';
+import toastr from 'toastr';
+import 'toastr/build/toastr.min.css';
+import PropTypes from 'prop-types';
+
 
 class ChatRooms extends React.Component{
     componentDidMount(){
         socket.emit('rooms');
         socket.on('roomlist', rooms => {
             console.log(rooms);
-            this.setState({            
+            this.setState({
                 rooms : Object.keys(rooms)
             });
         })
@@ -24,12 +28,14 @@ class ChatRooms extends React.Component{
 
     createRoom(roomName) {
         console.log(roomName);
+
         if(this.state.rooms.indexOf(roomName) === -1) {
+
             this.setState({
                 rooms: [...this.state.rooms, roomName]
             });
         } else {
-            alert(`Room ${roomName} already exists`);
+            toastr.error(`Room ${roomName} already exists`, 'Error');
         }
     }
 
@@ -42,11 +48,13 @@ class ChatRooms extends React.Component{
              </div>
         );
     }
-
-     
 }
 ChatRooms.roomList = props => (
     props.rooms.map(room => <div key={room} className="chat-room"><Link to={`/room/${room}`}>{ room }</Link></div>)
 );
+
+ChatRooms.propTypes = {
+    rooms: PropTypes.arrayOf(PropTypes.string)
+}
 
 export default ChatRooms;

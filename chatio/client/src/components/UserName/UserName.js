@@ -1,10 +1,14 @@
 //Here user can set username
 import React from 'react';
 import { connect } from 'react-redux';
+import toastr from 'toastr'
+import 'toastr/build/toastr.min.css';
 //import SocketContext from '../../contexts/SocketContext';
 import ChatRooms from '../ChatRooms/ChatRooms';
 import { updateUser } from '../../actions/UserActions';
 import { socket } from '../../services/socketService';
+import PropTypes from 'prop-types';
+
 
 class UserName extends React.Component {
     constructor(props) {
@@ -29,11 +33,11 @@ class UserName extends React.Component {
                     this.setState({ hasName: true });
                     updateUser({ userName, rooms });
                 } else {
-                    alert('name taken!');
+                    toastr.error('Name taken.', 'Error');
                 }
             });
         } else {
-            // Toastr display "username can't be blank"?
+            toastr.error('Username can\'t be blank', 'Error');
         }
     }
     render() {
@@ -60,6 +64,10 @@ class UserName extends React.Component {
 
 const mapStateToProps = reduxStoreState => {
     return reduxStoreState;
+}
+
+UserName.propTypes = {
+    userName: PropTypes.string
 }
 
 export default connect(mapStateToProps, { updateUser })(UserName);//connect(mapStateToProps, {updateUser})(UserName);

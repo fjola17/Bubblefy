@@ -4,12 +4,17 @@ import {connect} from 'react-redux';
 import {socket} from '../../services/socketService';
 import UserName from '../UserName/UserName';
 import './chatWindow.css';
+import toastr from 'toastr';
+import 'toastr/build/toastr.min.css';
+import PropTypes from 'prop-types';
+import UserOps from '../UserOps/UserOps';
+
 
 class ChatWindow extends React.Component {
     activateListeners() {
         const { RoomName } = this.props.match.params;
         socket.on('updateusers',(room,users,ops) => {
-            if(Object.keys(users).indexOf(this.props.user.userName) == -1 && 
+            if(Object.keys(users).indexOf(this.props.user.userName) == -1 &&
                 Object.keys(ops).indexOf(this.props.user.userName) == -1) {
                 this.setState({kicked: true})
             }
@@ -73,7 +78,7 @@ class ChatWindow extends React.Component {
             if(response) {
                 //Alert or toastr success?
             }
-        })
+        });
     }
 
     banUser(e) {
@@ -83,7 +88,7 @@ class ChatWindow extends React.Component {
             if(response) {
 
             }
-        })
+        });
     }
 
     render() {
@@ -101,7 +106,7 @@ class ChatWindow extends React.Component {
                     <ChatWindow.Title roomName={roomName} />
                     <div className="users">
                         <ChatWindow.Ops ops={ops} />
-                        <ChatWindow.Users users={users} roomName={roomName} kickFunc={this.kickUser} banFunc={this.banUser} />
+                        <ChatWindow.Users users={users} roomName={roomName} kickFunc={this.kickUser} banFunc={this.banUser}/>
                     </div>
                     <ChatWindow.Messages messages={messages} />
                     <div className="input-container">
@@ -130,7 +135,7 @@ ChatWindow.Ops=props => (
 );
 
 ChatWindow.Users=props => (
-    props.users.map(user => <div className="user" key={user}>{user} <a href="#" id={user} name={props.roomName} onClick={e => props.kickFunc(e)}>KICK</a><a href="#" id={user} name={props.roomName} onClick={e => props.banFunc(e)}>BAN</a></div>)
+    props.users.map(user => <div className="user" key={user}>{user} <a href="#" id={user} name={props.roomName} onClick={e => props.kickFunc(e)}>KICK</a>  <a href="#" id={user} name={props.roomName} onClick={e => props.banFunc(e)}> | BAN</a></div>)
 );
 
 const mapStateToProps=(reduxState) => {
