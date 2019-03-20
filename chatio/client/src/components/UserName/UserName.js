@@ -38,7 +38,7 @@ class UserName extends React.Component {
     }
     render() {
         const { userName, hasName } = this.state;
-        if (!hasName) {
+        if (!hasName && this.props.user.userName == "") {
             return (
                 <div className="user-name">
                     <h2>Please enter your user name</h2>
@@ -59,9 +59,7 @@ class UserName extends React.Component {
 }
 
 const mapStateToProps = reduxStoreState => {
-    return {
-        "": ""
-    }
+    return reduxStoreState;
 }
 
 export default connect(mapStateToProps, { updateUser })(UserName);//connect(mapStateToProps, {updateUser})(UserName);

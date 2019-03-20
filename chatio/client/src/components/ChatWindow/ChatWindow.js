@@ -76,6 +76,16 @@ class ChatWindow extends React.Component {
         })
     }
 
+    banUser(e) {
+        const userName=e.target.id;
+        const roomName=e.target.name;
+        socket.emit('ban', {user: userName, room: roomName}, (response) => {
+            if(response) {
+
+            }
+        })
+    }
+
     render() {
         const {roomJoined,roomName,messages,redirect,users,kicked,ops}=this.state;
 
@@ -91,7 +101,7 @@ class ChatWindow extends React.Component {
                     <ChatWindow.Title roomName={roomName} />
                     <div className="users">
                         <ChatWindow.Ops ops={ops} />
-                        <ChatWindow.Users users={users} roomName={roomName} kickFunc={this.kickUser} />
+                        <ChatWindow.Users users={users} roomName={roomName} kickFunc={this.kickUser} banFunc={this.banUser} />
                     </div>
                     <ChatWindow.Messages messages={messages} />
                     <div className="input-container">
@@ -120,7 +130,7 @@ ChatWindow.Ops=props => (
 );
 
 ChatWindow.Users=props => (
-    props.users.map(user => <div className="user" key={user}>{user} <a href="#" id={user} name={props.roomName} onClick={e => props.kickFunc(e)}>KICK</a></div>)
+    props.users.map(user => <div className="user" key={user}>{user} <a href="#" id={user} name={props.roomName} onClick={e => props.kickFunc(e)}>KICK</a><a href="#" id={user} name={props.roomName} onClick={e => props.banFunc(e)}>BAN</a></div>)
 );
 
 const mapStateToProps=(reduxState) => {
