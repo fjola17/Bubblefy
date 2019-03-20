@@ -7,8 +7,13 @@ import './chatWindow.css';
 class ChatWindow extends React.Component{
     componentDidMount(props){
         const { roomName } = this.props.match.params;
-        socket.emit('joinroom', {room: roomName});
-        console.log(socket);
+        socket.emit('joinroom', {room: roomName}, (response, reason) => {
+            if(response) {
+                this.setState({ roomJoined: true });
+            } else {
+                alert(`Couldn't join room because: ${reason}`);
+            }
+        });
         this.setState({ roomName: this.props.match.params.RoomName })
     }
     constructor(props){
@@ -19,17 +24,24 @@ class ChatWindow extends React.Component{
         }
     }
     render(){
-        return(
-            <div className="chat-window">
-                <ChatWindow.Title roomName={this.state.roomName} />
-                <ChatWindow.Users />
-                <ChatWindow.Messages />
-                <div className="input-container">
-                    <input type="text" placeholder="Please enter your message" />
-                    <button className="btn btn-primary" type="button">Send</button>
+        const { roomJoined, roomName } = this.state;
+        if(roomJoined) {
+            return(
+                <div className="chat-window">
+                    <ChatWindow.Title roomName={roomName} />
+                    <ChatWindow.Users />
+                    <ChatWindow.Messages />
+                    <div className="input-container">
+                        <input type="text" placeholder="Please enter your message" />
+                        <button className="btn btn-primary" type="button">Send</button>
+                    </div>
                 </div>
-            </div>
-        )
+            )
+        } else {
+            return(
+                <div><p>Joining, please wait...</p></div>
+            )
+        }
     }
 }
 ChatWindow.Title = props =>(
