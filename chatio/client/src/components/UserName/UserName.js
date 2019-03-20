@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 //import SocketContext from '../../contexts/SocketContext';
 import ChatRooms from '../ChatRooms/ChatRooms';
 import { updateUser } from '../../actions/UserActions';
+import { socket } from '../../services/socketService';
 
 class UserName extends React.Component {
     constructor(props) {
@@ -22,9 +23,15 @@ class UserName extends React.Component {
         if (this.props.userName !== '') {
             const { userName, rooms } = this.state;
             const { updateUser } = this.props;
-            console.log(`username: ${ userName }`)
-            updateUser({ userName, rooms });
-            this.setState({ hasName: true });
+            socket.emit('adduser', userName, (response) => {
+                if(response) {
+                    console.log("Response ok");
+                    this.setState({ hasName: true });
+                    updateUser({ userName, rooms });
+                } else {
+                    alert('name taken!');
+                }
+            });
         } else {
             // Toastr display "username can't be blank"?
         }

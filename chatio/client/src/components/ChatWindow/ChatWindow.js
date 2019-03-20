@@ -1,18 +1,27 @@
 import React from 'react'
 import { connect } from 'react-redux';
+import { socket } from '../../services/socketService';
 import UserName from '../UserName/UserName';
 import './chatWindow.css';
 
 class ChatWindow extends React.Component{
     componentDidMount(props){
+        const { roomName } = this.props.match.params;
+        socket.emit('joinroom', {room: roomName});
+        console.log(socket);
+        this.setState({ roomName: this.props.match.params.RoomName })
     }
     constructor(props){
         super(props)
+        this.state = {
+            roomName: "",
+            roomJoined: false,
+        }
     }
     render(){
         return(
             <div className="chat-window">
-                <ChatWindow.Title />
+                <ChatWindow.Title roomName={this.state.roomName} />
                 <ChatWindow.Users />
                 <ChatWindow.Messages />
                 <div className="input-container">
@@ -24,7 +33,7 @@ class ChatWindow extends React.Component{
     }
 }
 ChatWindow.Title = props =>(
-    <h3 className="title">Club penguin</h3>
+    <h3 className="title">{props.roomName}</h3>
 );
 ChatWindow.Messages = props => (
     <div className="messages">blee</div>
@@ -34,7 +43,6 @@ ChatWindow.Users = props => (
 );
 
 const mapStateToProps = (reduxState) => {
-    console.log(reduxState);
     return reduxState;
 }
 
