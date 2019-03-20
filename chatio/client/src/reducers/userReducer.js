@@ -1,7 +1,15 @@
-const user =()=>{
-    return "";
+import { UPDATE_USER } from '../constants';
+
+const initialState = {
+    userName : '',
+    rooms: {},
+    socket: this
 }
-export default user;/*
-export default function (state= {}, action) {
-    console.log("hey");
-}*/
+
+export default function(state = initialState, action){
+    switch(action.type){
+        case UPDATE_USER:
+        return action.payload;
+        default: return state;
+    }
+}

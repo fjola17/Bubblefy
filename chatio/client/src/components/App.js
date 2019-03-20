@@ -1,6 +1,7 @@
 import React from 'react';
 import ChatWindow from './ChatWindow/ChatWindow';
 import SocketContext from '../contexts/SocketContext';
+import UserName from './UserName/UserName';
 
 class App extends React.Component{
     componentDidMount(){
@@ -38,7 +39,7 @@ class App extends React.Component{
         console.log(users);
         return(
             <div className="container">
-            <ChatWindow />
+            <UserName />
             </div>
         )
     }
