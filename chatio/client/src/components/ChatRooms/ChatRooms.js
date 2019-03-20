@@ -24,9 +24,13 @@ class ChatRooms extends React.Component{
 
     createRoom(roomName) {
         console.log(roomName);
-        this.setState({
-            rooms: [...this.state.rooms, roomName]
-        });
+        if(this.state.rooms.indexOf(roomName) !== -1) {
+            this.setState({
+                rooms: [...this.state.rooms, roomName]
+            });
+        } else {
+            alert(`Room ${roomName} already exists`);
+        }
     }
 
    render(){
@@ -42,7 +46,7 @@ class ChatRooms extends React.Component{
      
 }
 ChatRooms.roomList = props => (
-    props.rooms.map(room => <div className="chat-room"><Link to={`/room/${room}`}>{ room }</Link></div>)
+    props.rooms.map(room => <div key={room} className="chat-room"><Link to={`/room/${room}`}>{ room }</Link></div>)
 );
 
 export default ChatRooms;
