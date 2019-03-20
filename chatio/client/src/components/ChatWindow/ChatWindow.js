@@ -4,6 +4,8 @@ import {connect} from 'react-redux';
 import {socket} from '../../services/socketService';
 import UserName from '../UserName/UserName';
 import './chatWindow.css';
+import PropTypes from 'prop-types';
+
 
 class ChatWindow extends React.Component {
     componentDidMount(props) {
@@ -97,6 +99,12 @@ ChatWindow.Messages=props => (
 ChatWindow.Users=props => (
     props.users.map(user => <div className="user" key={user}>{user}</div>)
 );
+
+ChatWindow.propTypes = {
+    user: PropTypes.object,
+    users: PropTypes.arrayOf(PropTypes.object),
+    roomName: PropTypes.string
+}
 
 const mapStateToProps=(reduxState) => {
     return reduxState;
