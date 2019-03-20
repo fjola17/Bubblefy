@@ -9,6 +9,14 @@ class ChatWindow extends React.Component {
     componentDidMount(props) {
         const {RoomName}=this.props.match.params;
         if(this.props.user.userName !== "") {
+            //Start listening for updateusers before we trigger the joinroom emission
+            socket.on('updateusers', (room, users, ops) => {
+                console.log(users);
+                if(room == RoomName) {
+                    this.setState({ users: Object.keys(users) });
+                }
+            });
+
             socket.emit('joinroom',{room: RoomName},(response,reason) => {
                 if(response) {
                     this.setState({roomJoined: true});
@@ -16,11 +24,12 @@ class ChatWindow extends React.Component {
                     alert(`Couldn't join room because: ${reason}`);
                 }
             });
+
             socket.on('updatechat',(roomName,messageHistory) => {
                 if(roomName===this.state.roomName) {
                     this.setState({messages: messageHistory});
                 }
-            })
+            });
             this.setState({roomName: this.props.match.params.RoomName})
         } else {
             this.setState({redirect: true})
@@ -33,6 +42,7 @@ class ChatWindow extends React.Component {
             roomJoined: false,
             message: "",
             messages: [],
+            users: [],
             redirect: false
         }
     }
@@ -49,7 +59,7 @@ class ChatWindow extends React.Component {
     }
 
     render() {
-        const {roomJoined,roomName,messages, redirect}=this.state;
+        const {roomJoined,roomName,messages,redirect,users}=this.state;
 
         if(redirect) {
             return (
@@ -61,7 +71,9 @@ class ChatWindow extends React.Component {
             return (
                 <div className="chat-window">
                     <ChatWindow.Title roomName={roomName} />
-                    <ChatWindow.Users />
+                    <div className="users">
+                        <ChatWindow.Users users={users}/>
+                    </div>
                     <ChatWindow.Messages messages={messages} />
                     <div className="input-container">
                         <input type="text" name="message" value={this.state.message} onChange={e => this.onInput(e)} onKeyDown={e => this.sendMessage(e.keyCode)} placeholder="Please enter your message" />
@@ -83,7 +95,7 @@ ChatWindow.Messages=props => (
     props.messages.map(msg => <div key={msg.timestamp} className="messages">{msg.nick}: {msg.message}</div>)
 );
 ChatWindow.Users=props => (
-    <div className="users">me!</div>
+    props.users.map(user => <div className="user" key={user}>{user}</div>)
 );
 
 const mapStateToProps=(reduxState) => {
