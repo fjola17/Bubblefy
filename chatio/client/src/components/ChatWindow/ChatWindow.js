@@ -40,6 +40,7 @@ class ChatWindow extends React.Component {
                     this.setState({roomJoined: true, roomName: RoomName});
                 } else {
                     alert(`Couldn't join room because: ${reason}`);
+                    this.setState({kickOrBan: true})
                 }
             });
         } else {
@@ -93,8 +94,17 @@ class ChatWindow extends React.Component {
 
     render() {
         const {roomJoined,roomName,messages,redirect,users,kickOrBan,ops}=this.state;
+        const { userName } = this.props.user;
+        let normalUserDisplay = (opStatus) => {
+            if(opStatus) {
+                return <ChatWindow.OptionableUsers users={users} roomName={roomName} kickFunc={this.kickUser} banFunc={this.banUser} />
+            } else {
+                return <ChatWindow.Users users={users} roomName={roomName} />
+            }
+        }
 
         if(redirect||kickOrBan) {
+            toastr.error("You've been kicked or banned!", "Kick or Ban");
             return (
                 <Redirect to="/" />
             )
@@ -106,7 +116,7 @@ class ChatWindow extends React.Component {
                     <ChatWindow.Title roomName={roomName} />
                     <div className="users">
                         <ChatWindow.Ops ops={ops} />
-                        <ChatWindow.Users users={users} roomName={roomName} kickFunc={this.kickUser} banFunc={this.banUser}/>
+                        { normalUserDisplay(ops.indexOf(userName) !== -1) }
                     </div>
                     <ChatWindow.Messages messages={messages} />
                     <div className="input-container">
@@ -134,9 +144,13 @@ ChatWindow.Ops=props => (
     props.ops.map(op => <div className="user op" key={op}>{op}</div>)
 );
 
-ChatWindow.Users=props => (
+ChatWindow.OptionableUsers=props => (
     props.users.map(user => <div className="user" key={user}>{user} <a href="#" id={user} name={props.roomName} onClick={e => props.kickFunc(e)}>KICK</a>  <a href="#" id={user} name={props.roomName} onClick={e => props.banFunc(e)}> | BAN</a></div>)
 );
+
+ChatWindow.Users=props => (
+    props.users.map(user => <div className="user" key={user}>{user}</div>)
+)
 
 const mapStateToProps=(reduxState) => {
     return reduxState;
