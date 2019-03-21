@@ -123,7 +123,7 @@ class ChatWindow extends React.Component {
         if (roomJoined) {
             return (
                 <div className="chat-window">
-                    <button className="btn btn primary" onClick={e=> this.goBack(e)}>X</button>
+                    <button className="btn btn-primary" onClick={e=> this.goBack(e)}>X</button>
                     <ChatWindow.Title roomName={roomName} />
                     <div className="users">
                         <ChatWindow.Ops ops={ops} />
@@ -156,11 +156,11 @@ ChatWindow.Ops = props => (
 );
 
 ChatWindow.OptionableUsers = props => (
-    props.users.map(user => <div className="user" key={user}>{user} <a href="#" id={user} name={props.roomName} onClick={e => props.kickFunc(e)}>KICK</a>  <a href="#" id={user} name={props.roomName} onClick={e => props.banFunc(e)}> | BAN</a></div>)
+    props.users.map(user => <div className="user" key={user}>{user} <a href="#" id={user} name={props.roomName} onClick={e => props.kickFunc(e)}>KICK</a>  <a href="#" id={user} name={props.roomName} onClick={e => props.banFunc(e)}> | BAN</a><UserOps /></div>)
 );
 
 ChatWindow.Users = props => (
-    props.users.map(user => <div className="user" key={user}>{user}</div>)
+    props.users.map(user => <div className="user" key={user}>{user} <UserOps /></div>)
 )
 
 const mapStateToProps = (reduxState) => {

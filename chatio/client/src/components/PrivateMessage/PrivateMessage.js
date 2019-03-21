@@ -42,11 +42,10 @@ class PrivateMessage extends React.Component{
         let {messages} = this.state;
         return(
             <div className="private-chat">
-        <h3 className="user">
-        Private chat with {this.state.nick}
-        </h3>
-        <div>Hello</div>
-        <div className="input-container">
+        <p className="user">
+            {this.state.nick}
+        </p>
+        <div className="msg-input">
             <input type="text" name="message" value={this.state.message} onChange={e => this.onInput(e)} placeholder="Please enter your message" />
             <button className="btn btn-primary" onClick={e => this.sendMessage(e)} type="button">Send</button>
         </div>
