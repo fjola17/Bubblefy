@@ -24,7 +24,7 @@ class UserName extends React.Component {
     }
     onFormSubmit(e) {
         e.preventDefault();
-        if (this.props.userName !== '') {
+        if (this.state.userName !== "") {
             const { userName, rooms } = this.state;
             const { updateUser } = this.props;
             socket.emit('adduser', userName, (response) => {
@@ -41,8 +41,8 @@ class UserName extends React.Component {
         }
     }
     render() {
-        const { userName, hasName } = this.state;
-        if (!hasName && this.props.user.userName == "") {
+        const { userName } = this.props.user;
+        if (userName == "") {
             return (
                 <div className="user-name">
                     <h2>Please enter your user name</h2>
