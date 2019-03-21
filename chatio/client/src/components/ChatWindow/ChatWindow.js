@@ -16,7 +16,7 @@ class ChatWindow extends React.Component {
         socket.on('updateusers',(room,users,ops) => {
             if(Object.keys(users).indexOf(this.props.user.userName) == -1 &&
                 Object.keys(ops).indexOf(this.props.user.userName) == -1) {
-                this.setState({kicked: true})
+                this.setState({kickOrBan: true})
             }
             if(room == RoomName) {
                 this.setState({users: Object.keys(users), ops: Object.keys(ops)});
@@ -56,7 +56,7 @@ class ChatWindow extends React.Component {
             users: [],
             ops: [],
             redirect: false,
-            kicked: false,
+            kickOrBan: false,
         }
     }
 
@@ -92,9 +92,9 @@ class ChatWindow extends React.Component {
     }
 
     render() {
-        const {roomJoined,roomName,messages,redirect,users,kicked,ops}=this.state;
+        const {roomJoined,roomName,messages,redirect,users,kickOrBan,ops}=this.state;
 
-        if(redirect||kicked) {
+        if(redirect||kickOrBan) {
             return (
                 <Redirect to="/" />
             )
