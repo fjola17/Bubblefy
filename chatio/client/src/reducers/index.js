@@ -1,3 +1,4 @@
 import { combineReducers} from 'redux';
 import user from './userReducer.js';
-export default combineReducers({user});
+import room from './roomReducer'
+export default combineReducers({user, room});
