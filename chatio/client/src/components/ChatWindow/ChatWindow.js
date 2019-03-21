@@ -49,7 +49,8 @@ class ChatWindow extends React.Component {
         }
     }
     componentWillUnmount(){
-        //put leave room here
+        const { RoomName } = this.props.match.params;
+        socket.emit('partroom', RoomName);
     }
 
     constructor(props) {
