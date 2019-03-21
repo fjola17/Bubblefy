@@ -14,7 +14,6 @@ class UserName extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            hasName: false,
             userName: "",
             rooms: {}
         }
@@ -30,7 +29,6 @@ class UserName extends React.Component {
             socket.emit('adduser', userName, (response) => {
                 if(response) {
                     console.log("Response ok");
-                    this.setState({ hasName: true });
                     updateUser({ userName, rooms });
                 } else {
                     toastr.error('Name taken.', 'Error');
