@@ -8,6 +8,7 @@
     margin: 0 auto;
     margin-top: 40px;
     overflow: hidden;
+    background-color: white;
 }
 .chat-window .input-container{
     position: absolute;
@@ -20,11 +21,13 @@ input{
 }
 .chat-window h3{
     color: red;
+    padding: 5px;
+    border-bottom: solid 2px black;
 }
 .chat-window .users{
     position: absolute;
     right: 0;
-    top: 40px;
+    top: 45px;
     padding: 20px;
     width: 20%;
     height: 100%;
@@ -37,5 +40,5 @@ input{
 }
 
 .chat-window .op {
-    color: yellow;
+    color: blue;
 }

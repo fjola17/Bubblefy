@@ -41,9 +41,9 @@ class ChatRooms extends React.Component{
 
    render(){
         return(
-            <div>
+            <div className="rooms">
                 <h1 className="room-list">List of all available chatrooms</h1>
-                <button className="btn btn-primary" onClick={() => this.createRoom(prompt("herherbig"))}>Create Room</button>
+                <button className="btn btn-primary" onClick={() => this.createRoom(prompt("Your room name"))}>Create Room</button>
                 <ChatRooms.roomList rooms={this.state.rooms} />
              </div>
         );

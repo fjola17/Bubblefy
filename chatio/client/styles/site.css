@@ -4,12 +4,26 @@ body{
     background-position: auto;
     margin:auto;
 }
+
 .container{
-  height: 700;
-  width: 900;
+    height: 700;
+    width: 900;
 }
+
 .user-name{
     margin: auto;
     padding-top: 25%;
     width: 500px;
+}
+
+.rooms{
+    margin: auto;
+    width: 400px;
+}
+
+.chat-room{
+  border: black 1px solid;
+  margin: auto;
+  padding: 20px;
+  background-color: white;
 }
