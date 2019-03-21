@@ -48,6 +48,10 @@ class ChatWindow extends React.Component {
             this.setState({ redirect: true })
         }
     }
+    componentWillUnmount(){
+        //put leave room here
+    }
+
     constructor(props) {
         super(props)
         this.state = {
@@ -92,7 +96,10 @@ class ChatWindow extends React.Component {
             }
         });
     }
-
+    goBack(e){
+        alert("You have left the room");
+        this.setState({redirect: true})
+    }
     render() {
         const { roomJoined, roomName, messages, redirect, users, kickOrBan, ops } = this.state;
         const { userName } = this.props.user;
@@ -105,15 +112,17 @@ class ChatWindow extends React.Component {
         }
 
         if (redirect || kickOrBan) {
-            toastr.error("You've been kicked or banned!", "Kick or Ban");
+            if(kickOrBan){
+                toastr.error("You've been kicked or banned!", "Kick or Ban");
+            }
             return (
                 <Redirect to="/" />
             )
         }
-
         if (roomJoined) {
             return (
                 <div className="chat-window">
+                    <button className="btn btn primary" onClick={e=> this.goBack(e)}>X</button>
                     <ChatWindow.Title roomName={roomName} />
                     <div className="users">
                         <ChatWindow.Ops ops={ops} />
