@@ -1,9 +1,12 @@
-/*import React from 'react'
+import React from 'react'
 import App from "./App"
-import ReactDOM from 'react-dom';
+import { shallow } from 'enzyme';
 
-it('renders without crashing', () =>{
-    const div = document.createElement('div');
-    ReactDOM.render(<App/>, div);
-    ReactDOM.unmountComponentAtNode(div);
-})*/
+describe('App.js tests', () => {
+
+
+    it('Renders two routes', () =>{
+        const wrapper = shallow(<App /> );
+        expect(wrapper.find('Route')).toHaveLength(2);
+    });
+});
