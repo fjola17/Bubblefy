@@ -76,29 +76,11 @@ class ChatWindow extends React.Component {
         this.setState({ [e.target.name]: e.target.value });
     }
 
-    kickUser(e) {
-        const userName = e.target.id;
-        const roomName = e.target.name;
-        socket.emit('kick', { user: userName, room: roomName }, (response) => {
-            if (response) {
-                //Alert or toastr success?
-            }
-        });
-    }
-
-    banUser(e) {
-        const userName = e.target.id;
-        const roomName = e.target.name;
-        socket.emit('ban', { user: userName, room: roomName }, (response) => {
-            if (response) {
-
-            }
-        });
-    }
     goBack(e){
         alert("You have left the room");
         this.setState({redirect: true})
     }
+
     render() {
         const { roomJoined, roomName, messages, redirect, users, kickOrBan, ops } = this.state;
         const { userName } = this.props.user;
@@ -121,7 +103,7 @@ class ChatWindow extends React.Component {
         if (roomJoined) {
             return (
                 <div className="chat-window">
-                    <button className="btn btn primary" onClick={e=> this.goBack(e)}>X</button>
+                    <button className="btn btn-primary" onClick={e=> this.goBack(e)}>X</button>
                     <ChatWindow.Title roomName={roomName} />
                     <div className="users">
                         <ChatWindow.Ops ops={ops} />
@@ -150,15 +132,15 @@ ChatWindow.Messages = props => (
 );
 
 ChatWindow.Ops = props => (
-    props.ops.map(op => <div className="user op" key={op}>{op}</div>)
+    props.ops.map(op => <div className="user op" key={op}>{op} <UserOps op={false} roomName={props.roomName} userName={op} /> </div>)
 );
 
 ChatWindow.OptionableUsers = props => (
-    props.users.map(user => <div className="user" key={user}>{user} <a href="#" id={user} name={props.roomName} onClick={e => props.kickFunc(e)}>KICK</a>  <a href="#" id={user} name={props.roomName} onClick={e => props.banFunc(e)}> | BAN</a></div>)
+    props.users.map(user => <div className="user" key={user}>{user} <UserOps op={true} roomName={props.roomName} userName={user} /></div>)
 );
 
 ChatWindow.Users = props => (
-    props.users.map(user => <div className="user" key={user}>{user}</div>)
+    props.users.map(user => <div className="user" key={user}>{user} <UserOps op={false} roomName={props.roomName} userName={user} /></div>)
 )
 
 const mapStateToProps = (reduxState) => {

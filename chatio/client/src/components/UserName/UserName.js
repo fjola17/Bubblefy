@@ -26,11 +26,17 @@ class UserName extends React.Component {
         if (this.props.userName !== '') {
             const { userName, rooms } = this.state;
             const { updateUser } = this.props;
+            socket.on('recv_privatemsg', (name, message) => {
+                toastr.info(message, name, {
+                    timeOut: 10000000, //100thousand seconds ~ 27hours
+                });
+            });
             socket.emit('adduser', userName, (response) => {
                 if(response) {
                     console.log("Response ok");
-                    this.setState({ hasName: true });
-                    updateUser({ userName, rooms });
+                    this.setState({ hasName: true });                    updateUser({ userName, rooms });
+
+                    updateUser({ userName, rooms, socket });
                 } else {
                     toastr.error('Name taken.', 'Error');
                 }
@@ -44,6 +50,7 @@ class UserName extends React.Component {
         if (!hasName) {
             return (
                 <div className="user-name">
+                    <div className="logo"></div>
                     <h2>Please enter your user name</h2>
                     <div id="user-form">
                         <form action="submit" onSubmit={e => this.onFormSubmit(e)}>
@@ -55,7 +62,10 @@ class UserName extends React.Component {
             );
         } else {
             return (
-                <div className="chat-rooms"><ChatRooms /></div>
+                <div className="chat-rooms">
+                    <div className="logo"></div>
+                    <ChatRooms />
+                </div>
             )
         }
     }
@@ -71,4 +81,4 @@ UserName.propTypes = {
     userName: PropTypes.string
 }
 
-export default connect(mapStateToProps, { updateUser })(UserName);//connect(mapStateToProps, {updateUser})(UserName);
+export default connect(mapStateToProps, { updateUser })(UserName);

@@ -42,3 +42,6 @@ input{
 .chat-window .op {
     color: blue;
 }
+.chat-window .button-config{
+    float:right;
+}

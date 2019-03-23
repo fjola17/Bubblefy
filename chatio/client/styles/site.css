@@ -1,11 +1,24 @@
 body{
     background-image: url('https://banner2.kisspng.com/20180408/ikq/kisspng-club-penguin-island-youtube-wikia-penguins-5aca11a97adcd9.6619900915231922335033.jpg');
     background-attachment: fixed;
-    background-position: auto;
+    background-position: center;
     margin:auto;
 }
 @import './chatWindow.css';
 @import './toastr.min.css';
+
+h2, h3{
+    color: orangered;
+}
+.logo{
+    background-image: url('../src/images/logo.png');
+    height: 75px;
+    width: 550px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: black solid;
+}
+
 .container{
     height: 700;
     width: 900;
@@ -27,4 +40,11 @@ body{
   margin: auto;
   padding: 20px;
   background-color: white;
+}
+.private-chat{
+    height: 200px;
+    width: 300px;
+}
+.msg-input{
+    width: 150px;
 }
