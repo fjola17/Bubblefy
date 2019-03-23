@@ -42,7 +42,7 @@ class ChatRooms extends React.Component {
         } else {
             return (
                 <div className="rooms">
-                    <h2 className="room-list">List of all available chatrooms</h2>
+                    <h1 className="room-list">List of all available chatrooms</h1>
                     <button className="btn btn-primary" onClick={() => this.createRoom(prompt("Your room name"))}>Create Room</button>
                     <ChatRooms.roomList rooms={rooms} />
                 </div>

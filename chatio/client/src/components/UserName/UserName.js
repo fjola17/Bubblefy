@@ -62,7 +62,7 @@ class UserName extends React.Component {
             );
         } else {
             return (
-                <div className="chat-rooms">
+                <div className="chatobj">
                     <div className="logo"></div>
                     <ChatRooms />
                 </div>
@@ -72,9 +72,7 @@ class UserName extends React.Component {
 }
 
 const mapStateToProps = reduxStoreState => {
-    return {
-        "": ""
-    }
+    return reduxStoreState;
 }
 
 UserName.propTypes = {
