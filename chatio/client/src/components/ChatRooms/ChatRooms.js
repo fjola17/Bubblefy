@@ -2,7 +2,6 @@
 //different componment for creating a chatroom??
 import React from 'react';
 import { Link } from 'react-router-dom';
-import connect from 'react-redux';
 import { socket } from '../../services/socketService';
 import { Redirect } from 'react-router-dom';
 import toastr from 'toastr';
@@ -56,6 +55,7 @@ ChatRooms.roomList = props => (
 );
 
 ChatRooms.propTypes = {
+    // List of rooms that the user can join
     rooms: PropTypes.arrayOf(PropTypes.string)
 }
 

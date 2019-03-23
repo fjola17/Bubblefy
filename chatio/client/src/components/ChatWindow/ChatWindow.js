@@ -2,9 +2,9 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { socket } from '../../services/socketService';
-import UserName from '../UserName/UserName';
+import './chatWindow.css';
 import toastr from 'toastr';
-import PropTypes from 'prop-types';
+import 'toastr/build/toastr.min.css';
 import UserOps from '../UserOps/UserOps';
 
 
@@ -45,6 +45,8 @@ class ChatWindow extends React.Component {
         } else {
             this.setState({ redirect: true })
         }
+        console.log("Chatwindow:");
+        console.log(this.props);
     }
     componentWillUnmount(){
         const { RoomName } = this.props.match.params;
@@ -147,4 +149,5 @@ const mapStateToProps = (reduxState) => {
     return reduxState;
 }
 
+//No props received except user from redux
 export default connect(mapStateToProps)(ChatWindow);

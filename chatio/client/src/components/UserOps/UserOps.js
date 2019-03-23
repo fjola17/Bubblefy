@@ -114,9 +114,14 @@ class UserOps extends React.Component {
         )
     }
 }
-/*UserOps.propTypes = {
-    listopen: propTypes.element.isRequired
-}*/
+UserOps.propTypes = {
+    op: PropTypes.bool.isRequired,  // If true then op actions are also displayed
+                                    // Holds true for normal users from op perspective
+    roomName: PropTypes.string.isRequired,  // Name of room that hosts user ops
+                                            // Needed for socket context for actions(ban/kick/etc)
+    userName: PropTypes.string.isRequired,  // Name of user that is being clicked on
+                                            // Needed for socket context for actions
+}
 const mapStateToProps = (reduxState) => {
     return reduxState;
 }

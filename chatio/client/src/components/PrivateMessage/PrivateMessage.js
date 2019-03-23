@@ -2,6 +2,7 @@ import React from 'react';
 import {socket} from '../../services/socketService';
 import {connect} from 'react-redux';
 import toastr from 'toastr';
+import PropTypes from 'prop-types';
 
 class PrivateMessage extends React.Component{
     constructor(props){
@@ -43,6 +44,10 @@ class PrivateMessage extends React.Component{
     </div>
         )
     }
+}
+
+PrivateMessage.propTypes = {
+    nick: PropTypes.string.isrequired        //The receiver name for the private message
 }
 
 const mapStateToProps=(reduxState) => {
