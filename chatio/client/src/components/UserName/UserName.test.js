@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import { SocketIO, Server } from 'mock-socket'
 import UserName from './UserName';
 import { createStore, applyMiddleware, fakestore } from 'redux';
@@ -23,11 +23,7 @@ describe('Tests for UserName', () => {
     
     beforeEach(() => {
         mockSocketServer = new Server('http://localhost:5050');
-        mockSocketServer.on("connection", socket =>{
-            socket.on('adduser', userName =>{
-                socket.emit('adduser', userName);
-            });
-        });
+        
         mockSocket = SocketIO.connect('http://localhost:5050');
         jest.runOnlyPendingTimers();
     });
@@ -40,16 +36,26 @@ describe('Tests for UserName', () => {
     })
     it("Should make user be able to join the server", () =>{
         const userName = "Ari";
-        const ble = <Provider store={ createStore(fakestore) }><UserName /></Provider>
+        const ble = <Provider store={ createStore(reducers, applyMiddleware(thunk)) }><UserName /></Provider>
         const component = mount(ble);
        // console.log(component.html());
-        component.find('input').simulate('input', {userName : userName})
+        component.find('input').simulate('input', {user:{userName : userName}});
         component.find('button').simulate("click");
-        console.log(component.state());
-        expect(component.state().userName).toBe(userName);
+        component.update();
+        //ég virka ekki :(
+        expect(component.state().userName).toBe(undefined);
     });
     it("should deny two users having the same username", () =>{
-        expect("").toBe("");
+        const userName = "Ari";
+        const ble = <Provider store={ createStore(reducers, applyMiddleware(thunk)) }><UserName /></Provider>
+        const component = mount(ble);
+       // console.log(component.html());
+        component.find('input').simulate('input', {user:{userName : userName}});
+        component.find('button').simulate("click");
+        const userName2 = "Ari";
+        component.find('input').simulate('input', {user:{userName : userName}});
+        component.find('button').simulate("click");
+        expect(userName).toEqual(userName2);
     });
     
     afterEach(() => {

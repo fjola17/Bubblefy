@@ -6,6 +6,7 @@ import { socket } from '../../services/socketService';
 import { Redirect } from 'react-router-dom';
 import toastr from 'toastr';
 import PropTypes from 'prop-types';
+import {connect} from 'react'
 
 
 class ChatRooms extends React.Component {
@@ -57,6 +58,9 @@ ChatRooms.roomList = props => (
 ChatRooms.propTypes = {
     // List of rooms that the user can join
     rooms: PropTypes.arrayOf(PropTypes.string)
+}
+const mapStateToProps = (reduxState) => {
+    return reduxState;
 }
 
 export default ChatRooms;

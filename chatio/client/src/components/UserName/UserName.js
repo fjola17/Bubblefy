@@ -2,7 +2,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import toastr from 'toastr';
-//import SocketContext from '../../contexts/SocketContext';
 import ChatRooms from '../ChatRooms/ChatRooms';
 import { updateUser } from '../../actions/UserActions';
 import { socket } from '../../services/socketService';

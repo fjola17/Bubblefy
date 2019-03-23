@@ -102,8 +102,6 @@ class ChatWindow extends React.Component {
         }
         if (roomJoined) {
             return (
-                <div className="chatobj">
-                <div className="logo"></div>
                 <div className="chat-window">
                     <button className="btn btn-danger button-config" onClick={e=> this.goBack(e)}>X</button>
                     <ChatWindow.Title roomName={roomName} />
@@ -116,7 +114,6 @@ class ChatWindow extends React.Component {
                         <input type="text" name="message" value={this.state.message} onChange={e => this.onInput(e)} onKeyDown={e => this.sendMessage(e.keyCode)} placeholder="Please enter your message" />
                         <button className="btn btn-primary" onClick={() => this.sendMessage()} type="button">Send</button>
                     </div>
-                </div>
                 </div>
             )
         } else {
