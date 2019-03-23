@@ -32,8 +32,8 @@ describe('Tests for ChatWindow', () => {
 
     it('Should emit the correct message', () => {
         const message = 'Hello there';
-        const component = shallow(<ChatWindow />)
-        component.find('[name="message"]').simulate('input', { value: { message: message } });
+        const component = shallow(<ChatWindow />);
+        component.find('input').first().simulate('input', { value: { message: message } });
         component.find('button').first().simulate('click');
 
         expect(component.state().messages.length).toBe(1);

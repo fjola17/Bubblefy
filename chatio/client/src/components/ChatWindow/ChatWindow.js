@@ -2,9 +2,7 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { socket } from '../../services/socketService';
-import './chatWindow.css';
 import toastr from 'toastr';
-import 'toastr/build/toastr.min.css';
 import UserOps from '../UserOps/UserOps';
 
 
