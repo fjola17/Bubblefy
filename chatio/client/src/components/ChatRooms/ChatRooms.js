@@ -6,7 +6,6 @@ import connect from 'react-redux';
 import { socket } from '../../services/socketService';
 import { Redirect } from 'react-router-dom';
 import toastr from 'toastr';
-import 'toastr/build/toastr.min.css';
 import PropTypes from 'prop-types';
 
 
