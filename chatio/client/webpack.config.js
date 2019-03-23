@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+//const WebpackCleanPlugin = require("clean-webpack-plugin");
 
 module.exports = {
     entry: './src/index.js',
@@ -49,6 +50,7 @@ module.exports = {
         extensions: ['.js', '.jsx', '.less', '.css']
     },
     plugins: [
+        
         new UglifyJsPlugin(),
         new HtmlWebpackPlugin({ title: 'Club Penguin Remastered', template: './index.html', inject: 'body' })
         
