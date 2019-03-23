@@ -168,7 +168,7 @@ ChatWindow.Messages = props => (
 );
 
 ChatWindow.Ops = props => (
-    props.ops.map(op => <div className="user op" key={op}>{op} <UserOps op={false} roomName={props.roomName} userName={user} /> </div>)
+    props.ops.map(op => <div className="user op" key={op}>{op} <UserOps op={false} roomName={props.roomName} userName={op} /> </div>)
 );
 
 ChatWindow.OptionableUsers = props => (
