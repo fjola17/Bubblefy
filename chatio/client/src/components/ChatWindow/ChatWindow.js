@@ -93,14 +93,30 @@ class ChatWindow extends React.Component {
         const roomName = e.target.name;
         socket.emit('ban', { user: userName, room: roomName }, (response) => {
             if (response) {
-
+                toastr.success('Ban successful', 'Success');
+            } else {
+                toastr.error('Ban failed', 'Error');
             }
         });
     }
+
+    opUser(e) {
+        const userName = e.target.id;
+        const roomName = e.target.name;
+        socket.emit('op', { user: userName, room: roomName }, (response) => {
+            if (response) {
+                toastr.success('User opped', 'Success');
+            } else {
+                toastr.error('Op failed', 'Error');
+            }
+        })
+    }
+
     goBack(e){
         alert("You have left the room");
         this.setState({redirect: true})
     }
+
     render() {
         const { roomJoined, roomName, messages, redirect, users, kickOrBan, ops } = this.state;
         const { userName } = this.props.user;
@@ -152,15 +168,15 @@ ChatWindow.Messages = props => (
 );
 
 ChatWindow.Ops = props => (
-    props.ops.map(op => <div className="user op" key={op}>{op}</div>)
+    props.ops.map(op => <div className="user op" key={op}>{op} <UserOps op={false} roomName={props.roomName} userName={user} /> </div>)
 );
 
 ChatWindow.OptionableUsers = props => (
-    props.users.map(user => <div className="user" key={user}>{user} <a href="#" id={user} name={props.roomName} onClick={e => props.kickFunc(e)}>KICK</a>  <a href="#" id={user} name={props.roomName} onClick={e => props.banFunc(e)}> | BAN</a><UserOps /></div>)
+    props.users.map(user => <div className="user" key={user}>{user} <UserOps op={true} roomName={props.roomName} userName={user} /></div>)
 );
 
 ChatWindow.Users = props => (
-    props.users.map(user => <div className="user" key={user}>{user} <UserOps /></div>)
+    props.users.map(user => <div className="user" key={user}>{user} <UserOps op={false} roomName={props.roomName} userName={user} /></div>)
 )
 
 const mapStateToProps = (reduxState) => {

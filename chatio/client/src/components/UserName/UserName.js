@@ -26,10 +26,15 @@ class UserName extends React.Component {
         if (this.state.userName !== "") {
             const { userName, rooms } = this.state;
             const { updateUser } = this.props;
+            socket.on('recv_privatemsg', (name, message) => {
+                toastr.info(message, name, {
+                    timeOut: 10000000, //100thousand seconds ~ 27hours
+                });
+            });
             socket.emit('adduser', userName, (response) => {
                 if(response) {
                     console.log("Response ok");
-                    updateUser({ userName, rooms });
+                    updateUser({ userName, rooms, socket });
                 } else {
                     toastr.error('Name taken.', 'Error');
                 }
