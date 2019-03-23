@@ -43,6 +43,7 @@ class UserName extends React.Component {
         if (userName == "") {
             return (
                 <div className="user-name">
+                    <div className="logo"></div>
                     <h2>Please enter your user name</h2>
                     <div id="user-form">
                         <form action="submit" onSubmit={e => this.onFormSubmit(e)}>
@@ -54,7 +55,10 @@ class UserName extends React.Component {
             );
         } else {
             return (
-                <div className="chat-rooms"><ChatRooms /></div>
+                <div className="chat-rooms">
+                    <div className="logo"></div>
+                    <ChatRooms />
+                </div>
             )
         }
     }
@@ -68,4 +72,4 @@ UserName.propTypes = {
     userName: PropTypes.string
 }
 
-export default connect(mapStateToProps, { updateUser })(UserName);//connect(mapStateToProps, {updateUser})(UserName);
+export default connect(mapStateToProps, { updateUser })(UserName);
