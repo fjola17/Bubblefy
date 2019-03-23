@@ -105,7 +105,7 @@ class ChatWindow extends React.Component {
         if (roomJoined) {
             return (
                 <div className="chat-window">
-                    <button className="btn btn-primary" onClick={e=> this.goBack(e)}>X</button>
+                    <button className="btn btn-danger button-config" onClick={e=> this.goBack(e)}>X</button>
                     <ChatWindow.Title roomName={roomName} />
                     <div className="users">
                         <ChatWindow.Ops ops={ops} />

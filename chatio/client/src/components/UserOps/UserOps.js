@@ -69,7 +69,7 @@ class UserOps extends React.Component {
 
     getPrivateMsg(e){
         e.preventDefault();
-        this.setState({private: true})
+        this.setState({private: !this.state.private})
 
     }
     render(){
