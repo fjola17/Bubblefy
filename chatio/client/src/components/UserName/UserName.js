@@ -1,8 +1,7 @@
 //Here user can set username
 import React from 'react';
 import { connect } from 'react-redux';
-import toastr from 'toastr'
-import 'toastr/build/toastr.min.css';
+import toastr from 'toastr';
 //import SocketContext from '../../contexts/SocketContext';
 import ChatRooms from '../ChatRooms/ChatRooms';
 import { updateUser } from '../../actions/UserActions';
@@ -14,6 +13,7 @@ class UserName extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            hasName: false,
             userName: "",
             rooms: {}
         }
@@ -23,12 +23,13 @@ class UserName extends React.Component {
     }
     onFormSubmit(e) {
         e.preventDefault();
-        if (this.state.userName !== "") {
+        if (this.props.userName !== '') {
             const { userName, rooms } = this.state;
             const { updateUser } = this.props;
             socket.emit('adduser', userName, (response) => {
                 if(response) {
                     console.log("Response ok");
+                    this.setState({ hasName: true });
                     updateUser({ userName, rooms });
                 } else {
                     toastr.error('Name taken.', 'Error');
@@ -39,8 +40,8 @@ class UserName extends React.Component {
         }
     }
     render() {
-        const { userName } = this.props.user;
-        if (userName == "") {
+        const { userName, hasName } = this.state;
+        if (!hasName) {
             return (
                 <div className="user-name">
                     <h2>Please enter your user name</h2>
@@ -61,7 +62,9 @@ class UserName extends React.Component {
 }
 
 const mapStateToProps = reduxStoreState => {
-    return reduxStoreState;
+    return {
+        "": ""
+    }
 }
 
 UserName.propTypes = {

@@ -1,11 +1,9 @@
-import React from 'react'
+import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { socket } from '../../services/socketService';
 import UserName from '../UserName/UserName';
-import './chatWindow.css';
 import toastr from 'toastr';
-import 'toastr/build/toastr.min.css';
 import PropTypes from 'prop-types';
 import UserOps from '../UserOps/UserOps';
 

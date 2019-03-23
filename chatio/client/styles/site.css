@@ -1,10 +1,11 @@
 body{
-    background-image: url('https://banner2.kisspng.com/20180408/ikq/kisspng-club-penguin-island-youtube-wikia-penguins-5aca11a97adcd9.6619900915231922335033.jpg');   
+    background-image: url('https://banner2.kisspng.com/20180408/ikq/kisspng-club-penguin-island-youtube-wikia-penguins-5aca11a97adcd9.6619900915231922335033.jpg');
     background-attachment: fixed;
     background-position: auto;
     margin:auto;
 }
-
+@import './chatWindow.css';
+@import './toastr.min.css';
 .container{
     height: 700;
     width: 900;
