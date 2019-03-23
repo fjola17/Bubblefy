@@ -78,40 +78,6 @@ class ChatWindow extends React.Component {
         this.setState({ [e.target.name]: e.target.value });
     }
 
-    kickUser(e) {
-        const userName = e.target.id;
-        const roomName = e.target.name;
-        socket.emit('kick', { user: userName, room: roomName }, (response) => {
-            if (response) {
-                //Alert or toastr success?
-            }
-        });
-    }
-
-    banUser(e) {
-        const userName = e.target.id;
-        const roomName = e.target.name;
-        socket.emit('ban', { user: userName, room: roomName }, (response) => {
-            if (response) {
-                toastr.success('Ban successful', 'Success');
-            } else {
-                toastr.error('Ban failed', 'Error');
-            }
-        });
-    }
-
-    opUser(e) {
-        const userName = e.target.id;
-        const roomName = e.target.name;
-        socket.emit('op', { user: userName, room: roomName }, (response) => {
-            if (response) {
-                toastr.success('User opped', 'Success');
-            } else {
-                toastr.error('Op failed', 'Error');
-            }
-        })
-    }
-
     goBack(e){
         alert("You have left the room");
         this.setState({redirect: true})

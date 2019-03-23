@@ -81,9 +81,9 @@ class UserOps extends React.Component {
             if(this.props.op) {
                 return (<>
                 <div className="userOps" onClick={e=>this.getPrivateMsg(e)}>Private message</div>
-                <div className="userOps" onClick={() => opUser(userName, roomName)}>Op</div>
-                <div className="userOps" onClick={() => kickUser(userName, roomName)}>Kick</div>
-                <div className="userOps" onClick={() => banUser(userName, roomName)}>Ban</div>
+                <div className="userOps" onClick={() => this.opUser(userName, roomName)}>Op</div>
+                <div className="userOps" onClick={() => this.kickUser(userName, roomName)}>Kick</div>
+                <div className="userOps" onClick={() => this.banUser(userName, roomName)}>Ban</div>
                 </>)
             } else {
                 return <div className="userOps" onClick={e=>this.getPrivateMsg(e)}>Private message</div>
