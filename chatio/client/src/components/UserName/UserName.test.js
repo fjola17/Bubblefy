@@ -8,7 +8,7 @@ import thunk from 'redux-thunk';
 import { Provider} from 'react-redux';
 import reducers from '../../reducers';
 
-
+/*
 jest.useFakeTimers();
 
 jest.mock('../../services/socketService', () => {
@@ -63,3 +63,4 @@ describe('Tests for UserName', () => {
         mockSocket.close();
     });
 });
+*/
